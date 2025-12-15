@@ -557,7 +557,7 @@ export default class UserDrawing extends MappableMixin(
    */
   getDialogMessage(): string {
     let message =
-      "<strong>" +
+      '<strong style="flex-grow:0">' +
       (typeof this.messageHeader === "function"
         ? this.messageHeader()
         : this.messageHeader) +
@@ -565,17 +565,17 @@ export default class UserDrawing extends MappableMixin(
 
     if (this.drawRectangle && this.pointEntities.entities.values.length >= 2) {
       message +=
-        '<p style="color: #434343; font-size: 14px;">' +
+        '<p style="color: #434343; font-size: 14px; flex-grow:0">' +
         i18next.t("models.userDrawing.clickToRedrawRectangle") +
         "</p>";
     } else if (this.pointEntities.entities.values.length > 0) {
       message +=
-        '<p style="color: #434343; font-size: 14px;">' +
+        '<p style="color: #434343; font-size: 14px; flex-grow:0">' +
         i18next.t("models.userDrawing.clickToAddAnotherPoint") +
         "</p>";
     } else {
       message +=
-        '<p style="color: #434343; font-size: 14px;">' +
+        '<p style="color: #434343; font-size: 14px; flex-grow:0">' +
         i18next.t("models.userDrawing.clickToAddFirstPoint") +
         "</p>";
     }

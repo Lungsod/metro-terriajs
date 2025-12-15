@@ -72,9 +72,9 @@ export class MeasureTool extends MapNavigationItemController {
   }
 
   prettifyNumber(number: number, squared: boolean) {
-    if (number <= 0) {
-      return "";
-    }
+    // if (number <= 0) {
+    //   return "";
+    // }
     // Given a number representing a number in metres, make it human readable
     let label = "m";
     if (squared) {
@@ -242,12 +242,13 @@ export class MeasureTool extends MapNavigationItemController {
 
   onMakeDialogMessage = () => {
     const distance = this.prettifyNumber(this.totalDistanceMetres, false);
-    let message = "Distance <b>" + distance + "</b>";
+    let message =
+      '<span style="flex-grow:1">Distance <b>' + distance + "</b></span>";
     if (this.totalAreaMetresSquared !== 0) {
       message +=
-        "<br>Area <b>" +
+        '<br><span style="flex-grow:1">Area <b>' +
         this.prettifyNumber(this.totalAreaMetresSquared, true) +
-        "</b>";
+        "</b></span>";
     }
     return message;
   };

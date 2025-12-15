@@ -79,9 +79,9 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   }
 
   prettifyNumber(number: number, squared: boolean) {
-    if (number <= 0) {
-      return "";
-    }
+    // if (number <= 0) {
+    //   return "";
+    // }
     // Given a number representing a number in metres, make it human readable
     let label = "m";
     if (squared) {
@@ -248,7 +248,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   onMakeDialogMessage = () => {
     if (this.validationError) {
       return (
-        "<span style='font-weight:bold;color:red;font-size:14px;'>" +
+        "<span style='font-weight:bold;color:red;font-size:14px;flex-grow:1'>" +
         this.validationError +
         "</span>"
       );
@@ -260,36 +260,44 @@ export default class AreaMeasureTool extends MapNavigationItemController {
       if (distance !== "") {
         message +=
           "<br>" +
+          '<span style="flex-grow:1">' +
           i18next.t("measure.areaMeasureLineLabel") +
-          "<b>" +
+          "<strong>" +
           distance +
-          "</b>";
+          "</strong>" +
+          "</span>";
       }
       message +=
         "<br>" +
+        '<span style="flex-grow:1">' +
         i18next.t("measure.areaMeasureAreaLabel") +
-        "<b>" +
+        "<strong>" +
         this.prettifyNumber(this.totalAreaMetresSquared, true) +
-        "</b>" +
+        "</strong>" +
+        "</span>" +
         "<br>";
     } else {
       message +=
         "<br>" +
+        '<span style="flex-grow:1">' +
         i18next.t("measure.areaMeasureLineLabel") +
-        "<b>" +
+        "<strong>" +
         distance +
-        "</b>";
+        "</strong>" +
+        "</span>";
       message +=
         "<br>" +
+        '<span style="flex-grow:1">' +
         i18next.t("measure.areaMeasureAreaLabel") +
-        "<b>" +
+        "<strong>" +
         this.prettifyNumber(this.totalAreaMetresSquared, true) +
-        "</b>" +
+        "</strong>" +
+        "</span>" +
         "<br>";
       message +=
-        "<span style='font-size:14px;color:#434343;'>" +
+        "<p style='font-size:14px;color:#434343;flex-grow:0'>" +
         i18next.t("measure.areaMeasureHelp") +
-        "</span>";
+        "</p>";
     }
     return message;
   };

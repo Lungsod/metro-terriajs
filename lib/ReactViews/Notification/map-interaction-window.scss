@@ -9,8 +9,8 @@
   top: 50px;
   z-index: 999;
 
-  width: 220px;
-  height: 130px;
+  width: 300px;
+  height: 150px;
   padding: 20px;
   flex-direction: row;
   justify-content: center;
@@ -30,12 +30,13 @@
 
 .content {
   text-align: center;
+  height: 100%;
 }
 
 .content > div {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 2px;
 }
 
 .closeBtn {
