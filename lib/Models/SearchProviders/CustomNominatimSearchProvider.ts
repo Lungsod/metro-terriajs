@@ -107,17 +107,19 @@ export default class CustomNominatimSearchProvider extends LocationSearchProvide
             });
           });
 
-        console.log(
-          "CustomNominatimSearchProvider: locations found",
-          locations.length
-        );
+        // console.log(
+        //   "CustomNominatimSearchProvider: locations found",
+        //   locations.length
+        // );
 
         runInAction(() => {
           searchResults.results.push(...locations);
-          console.log(
-            "CustomNominatimSearchProvider: results after push",
-            searchResults.results.length
-          );
+          //   console.log(
+          //     "CustomNominatimSearchProvider: results after push",
+          //     searchResults.results.length,
+          //     "results:",
+          //     locations.map((l) => ({ name: l.name, location: l.location }))
+          //   );
         });
 
         if (searchResults.results.length === 0) {
@@ -139,7 +141,7 @@ export default class CustomNominatimSearchProvider extends LocationSearchProvide
   }
 
   supportsAutocomplete(): boolean {
-    return false;
+    return true;
   }
 }
 
