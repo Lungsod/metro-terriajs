@@ -261,30 +261,30 @@ export default class AreaMeasureTool extends MapNavigationItemController {
         message +=
           "<br>" +
           i18next.t("measure.areaMeasureLineLabel") +
-          "<strong>" +
+          "<b>" +
           distance +
-          "</strong>";
+          "</b>";
       }
       message +=
         "<br>" +
         i18next.t("measure.areaMeasureAreaLabel") +
-        "<strong>" +
+        "<b>" +
         this.prettifyNumber(this.totalAreaMetresSquared, true) +
-        "<strong>" +
+        "</b>" +
         "<br>";
     } else {
       message +=
         "<br>" +
         i18next.t("measure.areaMeasureLineLabel") +
-        "<strong>" +
+        "<b>" +
         distance +
-        "</strong>";
+        "</b>";
       message +=
         "<br>" +
         i18next.t("measure.areaMeasureAreaLabel") +
-        "<strong>" +
+        "<b>" +
         this.prettifyNumber(this.totalAreaMetresSquared, true) +
-        "<strong>" +
+        "</b>" +
         "<br>";
       message +=
         "<span style='font-size:14px;color:#434343;'>" +
