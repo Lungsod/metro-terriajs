@@ -1787,6 +1787,15 @@
     "@types/geojson" "^7946.0.10"
     tslib "^2.8.1"
 
+"@turf/kinks@^7.3.1":
+  version "7.3.1"
+  resolved "https://registry.yarnpkg.com/@turf/kinks/-/kinks-7.3.1.tgz#9dce8ed24eef92d4dbc594d59a67d6f70e92f1fb"
+  integrity sha512-gGXNrhlF7zvLwRX672S0Be7bmYjbZEoZYnOGN6RvhyBFSSLFIbne+I74I+lWRzAzG/NhAMBXma5TpB09iTH06Q==
+  dependencies:
+    "@turf/helpers" "7.3.1"
+    "@types/geojson" "^7946.0.10"
+    tslib "^2.8.1"
+
 "@turf/line-intersect@7.3.1":
   version "7.3.1"
   resolved "https://registry.npmjs.org/@turf/line-intersect/-/line-intersect-7.3.1.tgz"

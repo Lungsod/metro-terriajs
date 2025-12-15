@@ -2,7 +2,11 @@
 import i18next from "i18next";
 import React from "react";
 import turfArea from "@turf/area";
-import { polygon as turfPolygon } from "@turf/helpers";
+import {
+  polygon as turfPolygon,
+  lineString as turfLineString
+} from "@turf/helpers";
+import kinks from "@turf/kinks";
 import Cartesian3 from "terriajs-cesium/Source/Core/Cartesian3";
 import Ellipsoid from "terriajs-cesium/Source/Core/Ellipsoid";
 import EllipsoidGeodesic from "terriajs-cesium/Source/Core/EllipsoidGeodesic";
@@ -31,6 +35,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   private readonly terria: Terria;
   private totalDistanceMetres: number = 0;
   private totalAreaMetresSquared: number = 0;
+  private validationError: string = "";
   private userDrawing: UserDrawing;
 
   onClose: () => void;
@@ -153,6 +158,27 @@ export default class AreaMeasureTool extends MapNavigationItemController {
       positions.push(currentPointPos!);
     }
 
+    // Convert positions to coordinates for validation
+    const coords: number[][] = [];
+    for (let i = 0; i < positions.length; i++) {
+      const pointsCartographic = Ellipsoid.WGS84.cartesianToCartographic(
+        positions[i]
+      );
+      const lon = CesiumMath.toDegrees(pointsCartographic.longitude);
+      const lat = CesiumMath.toDegrees(pointsCartographic.latitude);
+      coords.push([lon, lat]);
+    }
+    coords.push(coords[0]); // Close the polygon
+
+    // Validate polygon - check for self-intersections
+    const polygonLine = turfLineString(coords);
+    const selfIntersections = kinks(polygonLine);
+    if (selfIntersections.features.length > 0) {
+      this.validationError = i18next.t("measure.areaMeasureInvalidError");
+      return;
+    }
+    this.validationError = "";
+
     // Request the triangles that make up the polygon from Cesium.
     const tangentPlane = EllipsoidTangentPlane.fromPoints(
       positions,
@@ -184,17 +210,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
       return;
     }
 
-    const coords = [];
-    for (let i = 0; i < positions.length; i++) {
-      const pointsCartographic = Ellipsoid.WGS84.cartesianToCartographic(
-        positions[i]
-      );
-      var lon = CesiumMath.toDegrees(pointsCartographic.longitude);
-      var lat = CesiumMath.toDegrees(pointsCartographic.latitude);
-      coords.push([lon, lat]);
-    }
-    coords.push(coords[0]);
-    let areas = turfArea(turfPolygon([coords]));
+    const areas = turfArea(turfPolygon([coords]));
     this.totalAreaMetresSquared = areas;
   }
 
@@ -215,6 +231,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   onCleanUp() {
     this.totalDistanceMetres = 0;
     this.totalAreaMetresSquared = 0;
+    this.validationError = "";
     super.deactivate();
   }
 
@@ -229,6 +246,14 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   }
 
   onMakeDialogMessage = () => {
+    if (this.validationError) {
+      return (
+        "<span style='font-weight:bold;color:red;'>" +
+        this.validationError +
+        "</span>"
+      );
+    }
+
     const distance = this.prettifyNumber(this.totalDistanceMetres, false);
     let message = "";
     if (this.totalAreaMetresSquared !== 0) {
