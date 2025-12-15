@@ -202,6 +202,7 @@ export const GLYPHS = {
   loop,
   menu,
   measure,
+  measureArea,
   opened,
   pause,
   play,
