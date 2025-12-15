@@ -256,44 +256,26 @@ export default class AreaMeasureTool extends MapNavigationItemController {
 
     const distance = this.prettifyNumber(this.totalDistanceMetres, false);
     let message = "";
-    if (this.totalAreaMetresSquared !== 0) {
-      if (distance !== "") {
-        message +=
-          "<br>" +
-          '<span style="flex-grow:1">' +
-          i18next.t("measure.areaMeasureLineLabel") +
-          "<strong>" +
-          distance +
-          "</strong>" +
-          "</span>";
-      }
-      message +=
-        "<br>" +
-        '<span style="flex-grow:1">' +
-        i18next.t("measure.areaMeasureAreaLabel") +
-        "<strong>" +
-        this.prettifyNumber(this.totalAreaMetresSquared, true) +
-        "</strong>" +
-        "</span>" +
-        "<br>";
-    } else {
-      message +=
-        "<br>" +
-        '<span style="flex-grow:1">' +
-        i18next.t("measure.areaMeasureLineLabel") +
-        "<strong>" +
-        distance +
-        "</strong>" +
-        "</span>";
-      message +=
-        "<br>" +
-        '<span style="flex-grow:1">' +
-        i18next.t("measure.areaMeasureAreaLabel") +
-        "<strong>" +
-        this.prettifyNumber(this.totalAreaMetresSquared, true) +
-        "</strong>" +
-        "</span>" +
-        "<br>";
+    message += '<div style="flex-grow:1; align-content:center">';
+    message +=
+      "<br>" +
+      "<span>" +
+      i18next.t("measure.areaMeasureLineLabel") +
+      "<strong>" +
+      distance +
+      "</strong>" +
+      "</span>";
+    message +=
+      "<br>" +
+      "<span>" +
+      i18next.t("measure.areaMeasureAreaLabel") +
+      "<strong>" +
+      this.prettifyNumber(this.totalAreaMetresSquared, true) +
+      "</strong>" +
+      "</span>" +
+      "<br>";
+    message += "</div>";
+    if (this.totalAreaMetresSquared === 0) {
       message +=
         "<p style='font-size:14px;color:#434343;flex-grow:0'>" +
         i18next.t("measure.areaMeasureHelp") +

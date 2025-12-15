@@ -243,7 +243,9 @@ export class MeasureTool extends MapNavigationItemController {
   onMakeDialogMessage = () => {
     const distance = this.prettifyNumber(this.totalDistanceMetres, false);
     let message =
-      '<span style="flex-grow:1">Distance <b>' + distance + "</b></span>";
+      '<span style="flex-grow:1; align-content:center">Distance <b>' +
+      distance +
+      "</b></span>";
     if (this.totalAreaMetresSquared !== 0) {
       message +=
         '<br><span style="flex-grow:1">Area <b>' +
