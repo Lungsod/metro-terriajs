@@ -248,7 +248,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   onMakeDialogMessage = () => {
     if (this.validationError) {
       return (
-        "<span style='font-weight:bold;color:red;'>" +
+        "<span style='font-weight:bold;color:red;font-size:14px;'>" +
         this.validationError +
         "</span>"
       );
@@ -259,18 +259,38 @@ export default class AreaMeasureTool extends MapNavigationItemController {
     if (this.totalAreaMetresSquared !== 0) {
       if (distance !== "") {
         message +=
-          "<br>" + i18next.t("measure.areaMeasureLineLabel") + distance;
+          "<br>" +
+          i18next.t("measure.areaMeasureLineLabel") +
+          "<strong>" +
+          distance +
+          "</strong>";
       }
       message +=
         "<br>" +
         i18next.t("measure.areaMeasureAreaLabel") +
+        "<strong>" +
         this.prettifyNumber(this.totalAreaMetresSquared, true) +
+        "<strong>" +
         "<br>";
+    } else {
+      message +=
+        "<br>" +
+        i18next.t("measure.areaMeasureLineLabel") +
+        "<strong>" +
+        distance +
+        "</strong>";
+      message +=
+        "<br>" +
+        i18next.t("measure.areaMeasureAreaLabel") +
+        "<strong>" +
+        this.prettifyNumber(this.totalAreaMetresSquared, true) +
+        "<strong>" +
+        "<br>";
+      message +=
+        "<span style='font-size:14px;color:#434343;'>" +
+        i18next.t("measure.areaMeasureHelp") +
+        "</span>";
     }
-    message +=
-      "<span style='font-size:10px;color:#434343;'>" +
-      i18next.t("measure.areaMeasureHelp") +
-      "</span>";
     return message;
   };
 

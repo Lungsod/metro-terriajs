@@ -565,17 +565,17 @@ export default class UserDrawing extends MappableMixin(
 
     if (this.drawRectangle && this.pointEntities.entities.values.length >= 2) {
       message +=
-        '<p style="color: #434343; font-size: 10px;">' +
+        '<p style="color: #434343; font-size: 14px;">' +
         i18next.t("models.userDrawing.clickToRedrawRectangle") +
         "</p>";
     } else if (this.pointEntities.entities.values.length > 0) {
       message +=
-        '<p style="color: #434343; font-size: 10px;">' +
+        '<p style="color: #434343; font-size: 14px;">' +
         i18next.t("models.userDrawing.clickToAddAnotherPoint") +
         "</p>";
     } else {
       message +=
-        '<p style="color: #434343; font-size: 10px;">' +
+        '<p style="color: #434343; font-size: 14px;">' +
         i18next.t("models.userDrawing.clickToAddFirstPoint") +
         "</p>";
     }

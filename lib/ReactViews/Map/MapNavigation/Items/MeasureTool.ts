@@ -245,7 +245,9 @@ export class MeasureTool extends MapNavigationItemController {
     let message = distance;
     if (this.totalAreaMetresSquared !== 0) {
       message +=
-        "<br>" + this.prettifyNumber(this.totalAreaMetresSquared, true);
+        "<br>Distance <strong>" +
+        this.prettifyNumber(this.totalAreaMetresSquared, true) +
+        "</strong>";
     }
     return message;
   };
