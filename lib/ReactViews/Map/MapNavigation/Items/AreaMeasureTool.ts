@@ -258,7 +258,6 @@ export default class AreaMeasureTool extends MapNavigationItemController {
     let message = "";
     message += '<div style="flex-grow:1; align-content:center">';
     message +=
-      "<br>" +
       "<span>" +
       i18next.t("measure.areaMeasureLineLabel") +
       "<strong>" +

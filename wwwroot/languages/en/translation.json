@@ -53,7 +53,7 @@
     }
   },
   "measure": {
-    "measureTool": "Measure Tool",
+    "measureTool": "Line Measure Tool",
     "measureToolTitle": "Line Measure",
     "measureDistance": "Measure distance between locations",
     "measureArea": "Measure the area",
