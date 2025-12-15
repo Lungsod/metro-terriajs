@@ -41,8 +41,10 @@ export default class CustomNominatimSearchProvider extends LocationSearchProvide
     searchText: string,
     searchResults: SearchProviderResults
   ): Promise<void> {
-    searchResults.results.length = 0;
-    searchResults.message = undefined;
+    runInAction(() => {
+      searchResults.results.length = 0;
+      searchResults.message = undefined;
+    });
 
     const view = this.terria.currentViewer.getCurrentCameraView();
     const bboxStr =
@@ -90,7 +92,10 @@ export default class CustomNominatimSearchProvider extends LocationSearchProvide
             (feat) =>
               feat.properties && feat.geometry && feat.properties.display_name
           )
-          .sort((a, b) => b.properties!.importance - a.properties!.importance)
+          .sort(
+            (a, b) =>
+              (b.properties?.importance ?? 0) - (a.properties?.importance ?? 0)
+          )
           .map((feat) => {
             return new SearchResult({
               name: feat.properties!.display_name,
@@ -102,8 +107,17 @@ export default class CustomNominatimSearchProvider extends LocationSearchProvide
             });
           });
 
+        console.log(
+          "CustomNominatimSearchProvider: locations found",
+          locations.length
+        );
+
         runInAction(() => {
           searchResults.results.push(...locations);
+          console.log(
+            "CustomNominatimSearchProvider: results after push",
+            searchResults.results.length
+          );
         });
 
         if (searchResults.results.length === 0) {

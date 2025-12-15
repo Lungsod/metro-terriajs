@@ -71,7 +71,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   }
 
   get glyph(): any {
-    return GLYPHS.measure;
+    return GLYPHS.measureArea;
   }
 
   get viewerMode(): ViewerMode | undefined {
