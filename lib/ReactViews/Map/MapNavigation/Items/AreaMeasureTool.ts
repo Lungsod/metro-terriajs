@@ -248,7 +248,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
   onMakeDialogMessage = () => {
     if (this.validationError) {
       return (
-        "<span style='font-weight:bold;color:red;font-size:14px;flex-grow:1'>" +
+        "<span style='font-weight:bold;color:red;font-size:14px;flex-grow:1;align-content:center'>" +
         this.validationError +
         "</span>"
       );
