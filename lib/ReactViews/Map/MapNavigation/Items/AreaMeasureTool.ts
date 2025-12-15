@@ -268,7 +268,7 @@ export default class AreaMeasureTool extends MapNavigationItemController {
         "<br>";
     }
     message +=
-      "<span style='font-size:8px;color:blue;'>" +
+      "<span style='font-size:10px;color:#434343;'>" +
       i18next.t("measure.areaMeasureHelp") +
       "</span>";
     return message;

@@ -62,7 +62,7 @@
     "areaMeasureLineLabel": "Length ",
     "areaMeasureAreaLabel": "  Area ",
     "areaMeasureHelp": "Click on the first point to close the polygon.",
-    "areaMeasureInvalidError": "There is an error in the polygon. Draw the correct polygons.",
+    "areaMeasureInvalidError": "There is an error in the polygon. Please make sure there are no intersecting lines.",
     "areaMeasureAttention": "Caution: Area measurement is not possible when polygons intersect.",
     "areaMeasureNotify": "To cancel a point that has already been selected, click on that point."
   },
@@ -1424,8 +1424,8 @@
       "firstPoint": "First Point",
       "btnCancel": "Cancel",
       "btnDone": "Done",
-      "clickToAddFirstPoint": "Click on map to add a point",
-      "clickToAddAnotherPoint": "Click on map to add another point",
+      "clickToAddFirstPoint": "Click on the map to add a point",
+      "clickToAddAnotherPoint": "Click on the map to add another point",
       "clickToRedrawRectangle": "Click another point to redraw the rectangle",
       "anotherPoint": "Another Point",
       "userPolygon": "User polygon"
