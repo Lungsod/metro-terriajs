@@ -1,6 +1,8 @@
+"use strict";
 import i18next from "i18next";
-import { RefObject, createRef } from "react";
-import ArcType from "terriajs-cesium/Source/Core/ArcType";
+import React from "react";
+import turfArea from "@turf/area";
+import { polygon as turfPolygon } from "@turf/helpers";
 import Cartesian3 from "terriajs-cesium/Source/Core/Cartesian3";
 import Ellipsoid from "terriajs-cesium/Source/Core/Ellipsoid";
 import EllipsoidGeodesic from "terriajs-cesium/Source/Core/EllipsoidGeodesic";
@@ -16,15 +18,15 @@ import ViewerMode from "../../../../Models/ViewerMode";
 import { GLYPHS } from "../../../../Styled/Icon";
 import MapNavigationItemController from "../../../../ViewModels/MapNavigation/MapNavigationItemController";
 
-interface MeasureToolOptions {
+interface AreaMeasureToolOptions {
   terria: Terria;
   onClose(): void;
   onHandleClick?(): void;
 }
 
-export class MeasureTool extends MapNavigationItemController {
-  static id = "measure-tool";
-  static displayName = "MeasureTool";
+export default class AreaMeasureTool extends MapNavigationItemController {
+  static id = "area-measure-tool";
+  static displayName = "AreaMeasureTool";
 
   private readonly terria: Terria;
   private totalDistanceMetres: number = 0;
@@ -33,15 +35,15 @@ export class MeasureTool extends MapNavigationItemController {
 
   onClose: () => void;
   private onHandleClick?: () => void;
-  itemRef: RefObject<HTMLDivElement> = createRef();
+  itemRef: React.RefObject<HTMLDivElement> = React.createRef();
 
-  constructor(props: MeasureToolOptions) {
+  constructor(props: AreaMeasureToolOptions) {
     super();
     this.terria = props.terria;
     this.userDrawing = new UserDrawing({
       terria: props.terria,
-      messageHeader: () => i18next.t("measure.measureTool"),
-      allowPolygon: false,
+      messageHeader: () => i18next.t("measure.areaMeasureTool"),
+      allowPolygon: true,
       onPointClicked: this.onPointClicked.bind(this),
       onPointMoved: this.onPointMoved.bind(this),
       onCleanUp: this.onCleanUp.bind(this),
@@ -104,30 +106,30 @@ export class MeasureTool extends MapNavigationItemController {
       return;
     }
 
-    let firstPointPos: Cartesian3 | undefined;
-    let prevPointPos: Cartesian3 | undefined;
-    for (let i = 0; i < pointEntities.entities.values.length; i++) {
+    const prevPoint = pointEntities.entities.values[0];
+    let prevPointPos = prevPoint.position!.getValue(
+      this.terria.timelineClock.currentTime
+    );
+    for (let i = 1; i < pointEntities.entities.values.length; i++) {
       const currentPoint = pointEntities.entities.values[i];
       const currentPointPos = currentPoint.position!.getValue(
         this.terria.timelineClock.currentTime
       );
-      if (currentPointPos === undefined) continue;
-      if (prevPointPos === undefined) {
-        prevPointPos = currentPointPos;
-        firstPointPos = prevPointPos;
-        continue;
-      }
 
       this.totalDistanceMetres =
         this.totalDistanceMetres +
-        this.getGeodesicDistance(prevPointPos, currentPointPos);
+        this.getGeodesicDistance(prevPointPos!, currentPointPos!);
 
       prevPointPos = currentPointPos;
     }
-    if (prevPointPos && firstPointPos && this.userDrawing.closeLoop) {
+    if (this.userDrawing.closeLoop) {
+      const firstPoint = pointEntities.entities.values[0];
+      const firstPointPos = firstPoint.position!.getValue(
+        this.terria.timelineClock.currentTime
+      );
       this.totalDistanceMetres =
         this.totalDistanceMetres +
-        this.getGeodesicDistance(prevPointPos, firstPointPos);
+        this.getGeodesicDistance(prevPointPos!, firstPointPos!);
     }
   }
 
@@ -142,15 +144,13 @@ export class MeasureTool extends MapNavigationItemController {
     }
     const perPositionHeight = true;
 
-    const positions = [];
+    const positions: Cartesian3[] = [];
     for (let i = 0; i < pointEntities.entities.values.length; i++) {
       const currentPoint = pointEntities.entities.values[i];
       const currentPointPos = currentPoint.position!.getValue(
         this.terria.timelineClock.currentTime
       );
-      if (currentPointPos !== undefined) {
-        positions.push(currentPointPos);
-      }
+      positions.push(currentPointPos!);
     }
 
     // Request the triangles that make up the polygon from Cesium.
@@ -158,22 +158,23 @@ export class MeasureTool extends MapNavigationItemController {
       positions,
       Ellipsoid.WGS84
     );
+    const keepDuplicates = true;
     const polygons = PolygonGeometryLibrary.polygonsFromHierarchy(
       new PolygonHierarchy(positions),
-      false,
+      keepDuplicates,
       tangentPlane.projectPointsOntoPlane.bind(tangentPlane),
       !perPositionHeight,
       Ellipsoid.WGS84
     );
 
+    const textureCoordinates = undefined;
     const geom = PolygonGeometryLibrary.createGeometryFromPositions(
       Ellipsoid.WGS84,
       polygons.polygons[0],
-      undefined,
+      textureCoordinates,
       CesiumMath.RADIANS_PER_DEGREE,
       perPositionHeight,
-      VertexFormat.POSITION_ONLY,
-      ArcType.GEODESIC
+      VertexFormat.POSITION_ONLY
     );
     if (
       geom.indices.length % 3 !== 0 ||
@@ -184,30 +185,17 @@ export class MeasureTool extends MapNavigationItemController {
     }
 
     const coords = [];
-    for (let i = 0; i < geom.attributes.position.values.length; i += 3) {
-      coords.push(
-        new Cartesian3(
-          geom.attributes.position.values[i],
-          geom.attributes.position.values[i + 1],
-          geom.attributes.position.values[i + 2]
-        )
+    for (let i = 0; i < positions.length; i++) {
+      const pointsCartographic = Ellipsoid.WGS84.cartesianToCartographic(
+        positions[i]
       );
+      var lon = CesiumMath.toDegrees(pointsCartographic.longitude);
+      var lat = CesiumMath.toDegrees(pointsCartographic.latitude);
+      coords.push([lon, lat]);
     }
-    let area = 0;
-    for (let i = 0; i < geom.indices.length; i += 3) {
-      const ind1 = geom.indices[i];
-      const ind2 = geom.indices[i + 1];
-      const ind3 = geom.indices[i + 2];
-
-      const a = Cartesian3.distance(coords[ind1], coords[ind2]);
-      const b = Cartesian3.distance(coords[ind2], coords[ind3]);
-      const c = Cartesian3.distance(coords[ind3], coords[ind1]);
-
-      // Heron's formula
-      const s = (a + b + c) / 2.0;
-      area += Math.sqrt(s * (s - a) * (s - b) * (s - c));
-    }
-    this.totalAreaMetresSquared = area;
+    coords.push(coords[0]);
+    let areas = turfArea(turfPolygon([coords]));
+    this.totalAreaMetresSquared = areas;
   }
 
   getGeodesicDistance(pointOne: Cartesian3, pointTwo: Cartesian3) {
@@ -242,11 +230,22 @@ export class MeasureTool extends MapNavigationItemController {
 
   onMakeDialogMessage = () => {
     const distance = this.prettifyNumber(this.totalDistanceMetres, false);
-    let message = distance;
+    let message = "";
     if (this.totalAreaMetresSquared !== 0) {
+      if (distance !== "") {
+        message +=
+          "<br>" + i18next.t("measure.areaMeasureLineLabel") + distance;
+      }
       message +=
-        "<br>" + this.prettifyNumber(this.totalAreaMetresSquared, true);
+        "<br>" +
+        i18next.t("measure.areaMeasureAreaLabel") +
+        this.prettifyNumber(this.totalAreaMetresSquared, true) +
+        "<br>";
     }
+    message +=
+      "<span style='font-size:8px;color:blue;'>" +
+      i18next.t("measure.areaMeasureHelp") +
+      "</span>";
     return message;
   };
 
