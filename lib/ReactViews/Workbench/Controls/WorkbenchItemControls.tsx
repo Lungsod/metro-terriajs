@@ -93,9 +93,11 @@ const WorkbenchItemControls: FC<WorkbenchItemControlsProps> = observer(
 
     return (
       <>
-        {controls?.viewingControls ? (
+        {/* ViewingControls removed — moved to kebab menu */}
+        {/* {controls?.viewingControls ? (
           <ViewingControls item={item} viewState={viewState} />
-        ) : null}
+        ) : null} */}
+
         {controls?.opacity ? <OpacitySection item={item} /> : null}
         {controls?.scaleWorkbench ? <ScaleWorkbenchInfo item={item} /> : null}
         {controls?.timer ? <TimerSection item={item} /> : null}
@@ -137,6 +139,7 @@ const WorkbenchItemControls: FC<WorkbenchItemControlsProps> = observer(
               maxValue={item.colorScaleMaximum}
             />
           )}
+
         {controls?.shortReport ? <ShortReport item={item} /> : null}
         {controls?.legend ? <Legend item={item} /> : null}
         {controls?.selectableDimensions ? (
