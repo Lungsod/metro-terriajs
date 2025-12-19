@@ -14,6 +14,7 @@ import MapInteractionMode, { UIMode } from "../../Models/MapInteractionMode";
 import ViewState from "../../ReactViewModels/ViewState";
 import parseCustomHtmlToReact from "../Custom/parseCustomHtmlToReact";
 import { withViewState } from "../Context";
+import DialogMeasureContent from "./DialogMeasureContent";
 import Styles from "./map-interaction-window.scss";
 
 const MapInteractionWindowWrapper = styled.div<{ isDiffTool: boolean }>`
@@ -152,21 +153,16 @@ class MapInteractionWindow extends Component<{
             [Styles.content]: !isDiffTool
           })}
         >
-          {isDefined(this.currentInteractionMode) &&
-            parseCustomHtmlToReact(this.currentInteractionMode.message())}
+          {isDefined(this.currentInteractionMode) && (
+            <DialogMeasureContent
+              message={this.currentInteractionMode.message()}
+              interactionMode={this.currentInteractionMode}
+              viewState={this.props.viewState}
+            />
+          )}
           {isDefined(this.currentInteractionMode) &&
             this.currentInteractionMode.messageAsNode()}
         </div>
-        {this.currentInteractionMode?.isMeasurementMode && (
-          <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
-            <button
-              onClick={() => this.props.viewState.setPrintWindow(window.open())}
-            >
-              Print
-            </button>
-            <button onClick={this.currentInteractionMode.onCancel}>Done</button>
-          </div>
-        )}
         {typeof this.currentInteractionMode?.customUi === "function" &&
           this.currentInteractionMode.customUi()}
       </MapInteractionWindowWrapper>
