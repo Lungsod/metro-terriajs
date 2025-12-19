@@ -81,7 +81,7 @@ class Workbench extends Component<IProps> {
       <Box column fullWidth styledMinHeight={"0"} flex={1}>
         <BadgeBar
           // label={t("workbench.label")}
-          label={"LAYERS"}
+          label={"LAYERS TALAGS"}
           badge={this.props.terria.workbench.items.length}
         >
           {showEnableAll ? (
