@@ -354,7 +354,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
             disabled={MappableMixin.isMixedInto(item) && item.disableZoomTo}
           >
             <BoxViewingControl>
-              <StyledIcon glyph={Icon.GLYPHS.search} />
+              <StyledIcon glyph={Icon.GLYPHS.zoomToLayer} />
               <span>{t("workbench.zoomTo")}</span>
             </BoxViewingControl>
           </ViewingControlMenuButton>
@@ -371,7 +371,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
             }
           >
             <BoxViewingControl>
-              <StyledIcon glyph={Icon.GLYPHS.about} />
+              <StyledIcon glyph={Icon.GLYPHS.info} />
               <span>{t("workbench.previewItem")}</span>
             </BoxViewingControl>
           </ViewingControlMenuButton>
@@ -400,7 +400,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
               title={t("workbench.splitItemTitle")}
             >
               <BoxViewingControl>
-                <StyledIcon glyph={Icon.GLYPHS.compare} />
+                <StyledIcon glyph={Icon.GLYPHS.compareLayers} />
                 <span>{t("workbench.splitItem")}</span>
               </BoxViewingControl>
             </ViewingControlMenuButton>
@@ -431,7 +431,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
               title={t("workbench.exportDataTitle")}
             >
               <BoxViewingControl>
-                <StyledIcon glyph={Icon.GLYPHS.upload} />
+                <StyledIcon glyph={Icon.GLYPHS.exportLayer} />
                 <span>{t("workbench.exportData")}</span>
               </BoxViewingControl>
             </ViewingControlMenuButton>
