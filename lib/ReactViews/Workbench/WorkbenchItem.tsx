@@ -134,15 +134,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
           </Box>
         </Box>
 
-        <RawButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
-          <BoxSpan padded>
-            <StyledIcon
-              styledHeight={"8px"}
-              fillColor={theme.dark}
-              glyph={Icon.GLYPHS.menuDotted}
-            />
-          </BoxSpan>
-        </RawButton>
+        <WorkbenchItemMenu item={item} viewState={viewState} />
 
         {CatalogMemberMixin.isMixedInto(item) ? (
           <Box centered paddedHorizontally>
@@ -189,8 +181,6 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
           ) : null}
         </Box>
       )}
-
-      {isMenuOpen && <WorkbenchItemMenu item={item} viewState={viewState} />}
     </StyledLi>
   );
 });
@@ -202,7 +192,7 @@ const DraggableBox = styled(Box)`
 `;
 
 const StyledLi = styled(Li)`
-  background: ${WORKBENCH_ITEM_BG};
+  background: ${(p) => p.theme.textLight};
   color: ${(p) => p.theme.textDark};
   border-radius: 8px;
   border: 1px solid ${(p) => p.theme.dark};

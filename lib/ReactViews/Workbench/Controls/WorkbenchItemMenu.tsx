@@ -490,7 +490,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
         gap={2}
       >
         <WorkbenchButton
-          css="flex-grow:0;"
+          css="flex-grow:0; background: transparent;"
           onClick={(e) => {
             e.stopPropagation();
             if (isMenuOpen) {
@@ -501,7 +501,9 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
           }}
           title={t("workbench.showMoreActionsTitle")}
           iconOnly
-          iconElement={() => <Icon glyph={Icon.GLYPHS.menuDotted} />}
+          iconElement={() => (
+            <StyledIcon glyph={Icon.GLYPHS.menuDotted} fillColor="#2f265e" />
+          )}
         />
       </Ul>
       {isMenuOpen && (
