@@ -487,7 +487,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
         gap={2}
       >
         <WorkbenchButton
-          css="flex-grow:0; background: transparent; svg { fill: #2f265e; }"
+          css="flex-grow:0; background: transparent; svg { fill: #2f265e; } &:hover { background: transparent !important; }"
           onClick={(e) => {
             e.stopPropagation();
             if (isMenuOpen) {
