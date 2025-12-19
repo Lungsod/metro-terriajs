@@ -128,6 +128,10 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                       textDark
                       maxLines={!isOpen ? 2 : false}
                       title={getName(item)}
+                      css={`
+                        overflow-wrap: anywhere;
+                        color: #1f1459;
+                      `}
                     >
                       {getName(item)}
                     </TextSpan>
@@ -142,6 +146,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                   title={getName(item)}
                   css={`
                     overflow-wrap: anywhere;
+                    color: #1f1459;
                   `}
                 >
                   {getName(item)}
