@@ -89,9 +89,11 @@ class Workbench extends Component<IProps> {
               css={`
                 display: flex;
                 align-items: center;
-                padding-left: 5px;
+                padding: 5px;
                 min-width: 90px;
                 justify-content: space-evenly;
+                background-color: #2f265e;
+                border-radius: 4px;
               `}
             >
               <StyledIcon
@@ -110,9 +112,11 @@ class Workbench extends Component<IProps> {
               css={`
                 display: flex;
                 align-items: center;
-                padding-left: 5px;
+                padding: 5px;
                 min-width: 90px;
                 justify-content: space-evenly;
+                background-color: #2f265e;
+                border-radius: 4px;
               `}
             >
               <StyledIcon
@@ -132,9 +136,11 @@ class Workbench extends Component<IProps> {
               css={`
                 display: flex;
                 align-items: center;
-                padding-left: 5px;
+                padding: 5px;
                 min-width: 90px;
                 justify-content: space-evenly;
+                background-color: #2f265e;
+                border-radius: 4px;
               `}
             >
               <StyledIcon
@@ -153,9 +159,11 @@ class Workbench extends Component<IProps> {
               css={`
                 display: flex;
                 align-items: center;
-                padding-left: 5px;
+                padding: 5px;
                 min-width: 90px;
                 justify-content: space-evenly;
+                background-color: #2f265e;
+                border-radius: 4px;
               `}
             >
               <StyledIcon
@@ -174,9 +182,11 @@ class Workbench extends Component<IProps> {
             css={`
               display: flex;
               align-items: center;
-              padding: 0 5px;
+              padding: 5px;
               min-width: 90px;
               justify-content: space-evenly;
+              background-color: #2f265e;
+              border-radius: 4px;
               svg {
                 vertical-align: middle;
                 padding-right: 4px;

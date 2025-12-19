@@ -138,7 +138,7 @@ export const RawButton = styled.button<IButtonProps>`
   margin: 0;
   padding: 0;
   border: 0;
-  background-color: #2f265e;
+  background-color: transparent;
   cursor: pointer;
 
   &:hover {
