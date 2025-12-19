@@ -4,12 +4,14 @@ import { GLYPHS, StyledIcon } from "../../Icon";
 import { CheckboxIconProps } from "../types";
 
 const StyledCheckboxIcon = styled(StyledIcon).attrs({
-  styledWidth: "1em"
+  styledWidth: "1.5em"
 })<{ disabled?: boolean; isSwitch?: boolean }>`
   top: 0.125em;
   align-self: flex-start;
   position: relative;
   fill: currentColor;
+  stroke: currentColor;
+  stroke-width: 2px;
   ${(props) =>
     !props.disabled &&
     `
@@ -20,7 +22,7 @@ const StyledCheckboxIcon = styled(StyledIcon).attrs({
   ${(props) =>
     props.isSwitch &&
     `
-    width: 28px;
+    width: 42px;
     &:hover {
       opacity: 0.95;
     }
