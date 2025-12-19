@@ -157,13 +157,13 @@ class MapInteractionWindow extends Component<{
         >
           {isDefined(this.currentInteractionMode) && (
             <DialogMeasureContent
-              message={this.currentInteractionMode.message()}
+              message={this.currentInteractionMode.message?.()}
               interactionMode={this.currentInteractionMode}
               viewState={this.props.viewState}
             />
           )}
-          {isDefined(this.currentInteractionMode) &&
-            this.currentInteractionMode.messageAsNode()}
+          {/* {isDefined(this.currentInteractionMode) &&
+            this.currentInteractionMode.messageAsNode()} */}
         </div>
         {typeof this.currentInteractionMode?.customUi === "function" &&
           this.currentInteractionMode.customUi()}
