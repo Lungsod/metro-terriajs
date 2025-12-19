@@ -557,7 +557,7 @@
     "exportData": "Export",
     "removeFromMapTitle": "Remove this data",
     "removeFromMap": "Remove",
-    "label": "Datasets",
+    "label": "Layers",
     "removeAll": "Remove All",
     "collapseAll": "Collapse All",
     "expandAll": "Expand All",
