@@ -132,6 +132,11 @@ class MapInteractionWindow extends Component<{
     const isDiffTool =
       this.currentInteractionMode?.uiMode === UIMode.Difference;
 
+    console.log("RENDERING MAP INTERACTION WINDOW", {
+      isActive,
+      currentInteractionMode: this.currentInteractionMode
+    });
+
     return (
       <MapInteractionWindowWrapper
         className={windowClass}
