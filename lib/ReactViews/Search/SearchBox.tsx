@@ -133,8 +133,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
         htmlFor="search"
         css={`
           position: absolute;
-          left: 50%;
-          transform: translateX(-50%);
+          left: 20%;
         `}
       >
         <Box paddedRatio={2}>
@@ -146,8 +145,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
             opacity={0.5}
             css={`
               position: absolute;
-              left: 50%;
-              transform: translateX(-50%);
+              left: 0;
             `}
           />
         </Box>
