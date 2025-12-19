@@ -25,6 +25,7 @@ const SearchInput = styled.input<{ rounded?: boolean }>`
   padding: 0.5rem 40px;
   vertical-align: middle;
   -webkit-appearance: none;
+  text-align: center;
 `;
 
 export const DEBOUNCE_INTERVAL = 1000;
