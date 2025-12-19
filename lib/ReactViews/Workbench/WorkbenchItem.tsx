@@ -73,8 +73,22 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
     (ReferenceMixin.isMixedInto(item) && item.isLoadingReference);
 
   return (
-    <StyledLi style={style} className={className}>
-      <Box fullWidth justifySpaceBetween paddedRatio={3} styledMinHeight="38px">
+    <StyledLi
+      style={style}
+      css={`
+        border: 2px solid ${theme.dark};
+      `}
+      className={className}
+    >
+      <Box
+        fullWidth
+        justifySpaceBetween
+        paddedRatio={3}
+        styledMinHeight="38px"
+        css={`
+          border: 2px solid ${theme.dark};
+        `}
+      >
         <Box fullWidth>
           <Box left fullWidth centered>
             <DraggableBox
