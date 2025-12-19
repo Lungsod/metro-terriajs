@@ -72,7 +72,7 @@ const ViewingControlMenuButton = styled(RawButton).attrs({
 
   border-radius: 0;
 
-  width: 124px;
+  width: 140px;
   // ensure we support long strings
   min-height: 32px;
   display: block;
@@ -519,6 +519,16 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
 
             ul {
               list-style: none;
+              padding: 0 5px;
+              margin: 0;
+              width: fit-content;
+            }
+            li {
+              border: 1px solid #e0e0e0;
+              border-bottom: none;
+            }
+            li:last-child {
+              border-bottom: 1px solid #e0e0e0;
             }
           `}
         >
