@@ -86,7 +86,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
         paddedRatio={3}
         styledMinHeight="38px"
         css={`
-          border-bottom: 2px solid ${theme.dark};
+          border-bottom: 1px solid ${theme.dark};
         `}
       >
         <Box fullWidth>
