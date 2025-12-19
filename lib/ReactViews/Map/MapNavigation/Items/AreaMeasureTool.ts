@@ -258,13 +258,6 @@ export default class AreaMeasureTool extends MapNavigationItemController {
     let message = "";
     message += '<div style="flex-grow:1; align-content:center">';
     message +=
-      "<span>" +
-      i18next.t("measure.areaMeasureLineLabel") +
-      "<strong>" +
-      distance +
-      "</strong>" +
-      "</span>";
-    message +=
       "<br>" +
       "<span>" +
       i18next.t("measure.areaMeasureAreaLabel") +
@@ -273,6 +266,13 @@ export default class AreaMeasureTool extends MapNavigationItemController {
       "</strong>" +
       "</span>" +
       "<br>";
+    message +=
+      "<span>" +
+      i18next.t("measure.areaMeasureLineLabel") +
+      "<strong>" +
+      distance +
+      "</strong>" +
+      "</span>";
     message += "</div>";
     if (this.totalAreaMetresSquared === 0) {
       message +=
