@@ -464,7 +464,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
   };
 
   return (
-    <Box>
+    <Box css="background-color: transparent;">
       <Ul
         css={`
           list-style: none;
@@ -474,6 +474,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
           position: relative;
           display: flex;
           justify-content: space-between;
+          background-color: transparent;
 
           li {
             display: block;
@@ -487,7 +488,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
         gap={2}
       >
         <WorkbenchButton
-          css="flex-grow:0; background: transparent; svg { fill: #2f265e; } &:hover { background: transparent !important; }"
+          css="flex-grow:0; background: transparent; svg { fill: #2f265e; } &:hover { background: transparent !important; } background-color: transparent;"
           onClick={(e) => {
             e.stopPropagation();
             if (isMenuOpen) {

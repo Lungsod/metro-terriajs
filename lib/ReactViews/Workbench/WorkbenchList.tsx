@@ -23,7 +23,7 @@ const StyledUl = styled(Ul)`
     width: 8px;
   }
   &::-webkit-scrollbar-track {
-    background: white;
+    background: transparent;
   }
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 255, 255, 0.9);
