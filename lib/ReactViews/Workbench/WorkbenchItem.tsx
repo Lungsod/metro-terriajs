@@ -105,7 +105,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                   <Checkbox
                     id="workbenchtoggleVisibility"
                     isChecked={item.show}
-                    isSwitch
+                    isSwitch={false}
                     title={t("workbench.toggleVisibility")}
                     onChange={toggleVisibility}
                     css={`
