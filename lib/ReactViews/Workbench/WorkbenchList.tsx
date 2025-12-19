@@ -21,8 +21,17 @@ const StyledUl = styled(Ul)`
   }
   &::-webkit-scrollbar {
     width: 8px;
+  }
+  &::-webkit-scrollbar-track {
     background: white;
-    margin-right: 5px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  &::-webkit-scrollbar-button {
+    display: none;
   }
 `;
 
