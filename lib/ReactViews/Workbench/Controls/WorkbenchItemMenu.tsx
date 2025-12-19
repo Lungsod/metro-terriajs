@@ -76,6 +76,10 @@ const ViewingControlMenuButton = styled(RawButton).attrs({
   // ensure we support long strings
   min-height: 32px;
   display: block;
+
+  &:hover {
+    background-color: white;
+  }
 `;
 
 interface PropsType {
