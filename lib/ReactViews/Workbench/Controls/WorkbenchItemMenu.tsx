@@ -76,15 +76,6 @@ const ViewingControlMenuButton = styled(RawButton).attrs({
   // ensure we support long strings
   min-height: 32px;
   display: block;
-
-  &:hover,
-  &:focus {
-    color: ${(props) => props.theme.textLight};
-    background-color: ${(props) => props.theme.colorPrimary};
-    svg {
-      fill: ${(props) => props.theme.textLight};
-    }
-  }
 `;
 
 interface PropsType {
