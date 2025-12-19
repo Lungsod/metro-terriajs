@@ -101,6 +101,9 @@ class Workbench extends Component<IProps> {
                 &:hover svg {
                   fill: #2f265e;
                 }
+                &:hover span {
+                  color: #2f265e;
+                }
               `}
             >
               <StyledIcon
@@ -130,6 +133,9 @@ class Workbench extends Component<IProps> {
                 }
                 &:hover svg {
                   fill: #2f265e;
+                }
+                &:hover span {
+                  color: #2f265e;
                 }
               `}
             >
@@ -162,6 +168,9 @@ class Workbench extends Component<IProps> {
                 &:hover svg {
                   fill: #2f265e;
                 }
+                &:hover span {
+                  color: #2f265e;
+                }
               `}
             >
               <StyledIcon
@@ -191,6 +200,9 @@ class Workbench extends Component<IProps> {
                 }
                 &:hover svg {
                   fill: #2f265e;
+                }
+                &:hover span {
+                  color: #2f265e;
                 }
               `}
             >
@@ -225,6 +237,9 @@ class Workbench extends Component<IProps> {
               }
               &:hover svg {
                 fill: #2f265e;
+              }
+              &:hover span {
+                color: #2f265e;
               }
             `}
           >
