@@ -36,7 +36,7 @@ const SelectableDimension: FC<{
       {dim.name && dim.type !== "group" ? (
         <>
           <label htmlFor={id}>
-            <Text textGreyLighter medium as="span">
+            <Text textDarker medium as="span">
               {parseCustomMarkdownToReactWithOptions(dim.name, {
                 inline: true
               })}

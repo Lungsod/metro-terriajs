@@ -19,7 +19,9 @@ export const ScaleWorkbenchInfo: FC<IScaleWorkbenchInfoProps> = observer(
     return (
       <>
         <Spacing bottom={2} />
-        <Text>{applyTranslationIfExists(item.scaleWorkbenchInfo, i18n)}</Text>
+        <Text textDark>
+          {applyTranslationIfExists(item.scaleWorkbenchInfo, i18n)}
+        </Text>
       </>
     );
   }
