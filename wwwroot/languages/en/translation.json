@@ -53,9 +53,18 @@
     }
   },
   "measure": {
-    "measureTool": "Measure Tool",
+    "measureTool": "Line Measure Tool",
     "measureToolTitle": "Line Measure",
-    "measureDistance": "Measure distance between locations"
+    "measureDistance": "Measure distance between locations",
+    "measureArea": "Measure the area",
+    "areaMeasureToolTitle": "Area Measure",
+    "areaMeasureTool": "Area Measure Tool",
+    "areaMeasureLineLabel": "Length ",
+    "areaMeasureAreaLabel": "  Area ",
+    "areaMeasureHelp": "Click on the first point to close the polygon.",
+    "areaMeasureInvalidError": "There is an error in the polygon. Please make sure there are no intersecting lines.",
+    "areaMeasureAttention": "Caution: Area measurement is not possible when polygons intersect.",
+    "areaMeasureNotify": "To cancel a point that has already been selected, click on that point."
   },
   "location": {
     "errorGettingLocation": "Error getting location",
@@ -1415,8 +1424,8 @@
       "firstPoint": "First Point",
       "btnCancel": "Cancel",
       "btnDone": "Done",
-      "clickToAddFirstPoint": "Click to add a point",
-      "clickToAddAnotherPoint": "Click to add another point",
+      "clickToAddFirstPoint": "Click on the map to add a point",
+      "clickToAddAnotherPoint": "Click on the map to add another point",
       "clickToRedrawRectangle": "Click another point to redraw the rectangle",
       "anotherPoint": "Another Point",
       "userPolygon": "User polygon"

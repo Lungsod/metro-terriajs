@@ -557,28 +557,35 @@ export default class UserDrawing extends MappableMixin(
    */
   getDialogMessage(): string {
     let message =
-      "<strong>" +
+      '<strong style="flex-grow:0">' +
       (typeof this.messageHeader === "function"
         ? this.messageHeader()
         : this.messageHeader) +
       "</strong></br>";
+
+    if (this.drawRectangle && this.pointEntities.entities.values.length >= 2) {
+      message +=
+        '<p style="color: #434343; font-size: 14px; flex-grow:0">' +
+        i18next.t("models.userDrawing.clickToRedrawRectangle") +
+        "</p>";
+    } else if (this.pointEntities.entities.values.length > 0) {
+      message +=
+        '<p style="color: #434343; font-size: 14px; flex-grow:0">' +
+        i18next.t("models.userDrawing.clickToAddAnotherPoint") +
+        "</p>";
+    } else {
+      message +=
+        '<p style="color: #434343; font-size: 14px; flex-grow:0">' +
+        i18next.t("models.userDrawing.clickToAddFirstPoint") +
+        "</p>";
+    }
+
     const innerMessage = isDefined(this.onMakeDialogMessage)
       ? this.onMakeDialogMessage()
       : "";
 
     if (innerMessage !== "") {
       message += innerMessage + "</br>";
-    }
-
-    if (this.drawRectangle && this.pointEntities.entities.values.length >= 2) {
-      message +=
-        "<i>" + i18next.t("models.userDrawing.clickToRedrawRectangle") + "</i>";
-    } else if (this.pointEntities.entities.values.length > 0) {
-      message +=
-        "<i>" + i18next.t("models.userDrawing.clickToAddAnotherPoint") + "</i>";
-    } else {
-      message +=
-        "<i>" + i18next.t("models.userDrawing.clickToAddFirstPoint") + "</i>";
     }
     // htmlToReactParser will fail if html doesn't have only one root element.
     return "<div>" + message + "</div>";

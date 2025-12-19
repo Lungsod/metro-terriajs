@@ -137,6 +137,16 @@ class MapInteractionWindow extends Component<{
         aria-hidden={!isActive}
         isDiffTool={isDiffTool}
       >
+        {this.currentInteractionMode?.onCancel && (
+          <button
+            type="button"
+            onClick={this.currentInteractionMode.onCancel}
+            className={Styles.closeBtn}
+            aria-label="Close"
+          >
+            ✕
+          </button>
+        )}
         <div
           className={classNames({
             [Styles.content]: !isDiffTool
@@ -149,15 +159,6 @@ class MapInteractionWindow extends Component<{
         </div>
         {typeof this.currentInteractionMode?.customUi === "function" &&
           this.currentInteractionMode.customUi()}
-        {this.currentInteractionMode?.onCancel && (
-          <button
-            type="button"
-            onClick={this.currentInteractionMode.onCancel}
-            className={Styles.btn}
-          >
-            {this.currentInteractionMode.buttonText}
-          </button>
-        )}
       </MapInteractionWindowWrapper>
     );
   }

@@ -1,6 +1,7 @@
 declare namespace MapInteractionWindowScssNamespace {
   export interface IMapInteractionWindowScss {
     btn: string;
+    closeBtn: string;
     content: string;
     isActive: string;
     window: string;
