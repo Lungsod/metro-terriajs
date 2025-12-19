@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { comparer, reaction } from "mobx";
 import { observer } from "mobx-react";
 import { useTranslation } from "react-i18next";
@@ -55,6 +55,7 @@ const DataCatalogGroup: React.FC<PropsType> = observer((props) => {
 
   const { t } = useTranslation();
   const [isOpenLocal, setIsOpenLocal] = useState(false);
+  const groupRef = useRef<HTMLDivElement>(null);
 
   const isOpen = useCallback(() => {
     if (manageIsOpenLocally) {
@@ -71,6 +72,13 @@ const DataCatalogGroup: React.FC<PropsType> = observer((props) => {
     (await viewState.viewCatalogMember(group, !group.isOpen)).raiseError(
       viewState.terria
     );
+
+    // Scroll to the group after expansion
+    setTimeout(() => {
+      if (groupRef.current) {
+        groupRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+      }
+    }, 100); // Small delay to allow rendering
   }, [manageIsOpenLocally, isOpenLocal, group, viewState]);
 
   const isSelected = useCallback(() => {
@@ -106,47 +114,49 @@ const DataCatalogGroup: React.FC<PropsType> = observer((props) => {
   }, [group, isOpen]);
 
   return (
-    <CatalogGroup
-      text={getNameOrPrettyUrl()}
-      isPrivate={group.isPrivate}
-      title={getPath(group, " → ")}
-      topLevel={isTopLevel}
-      open={isOpen()}
-      loading={group.isLoading || group.isLoadingMembers}
-      emptyMessage={t("dataCatalog.groupEmpty")}
-      onClick={clickGroup}
-      removable={removable}
-      removeUserAddedData={() => removeUserAddedData(terria, group)}
-      selected={isSelected()}
-      // Pass these next three props down to deal with displayGroup functionality
-      displayGroup={group.displayGroup}
-      addRemoveButtonFunction={(event: MouseEvent) => {
-        addRemoveButtonClicked(
-          group,
-          viewState,
-          terria,
-          event.shiftKey || event.ctrlKey
-        );
-      }}
-      allItemsLoaded={allMappableMembersInWorkbench(
-        group.members || [],
-        terria
-      )}
-    >
-      {isOpen()
-        ? group.memberModels.map((item) => (
-            <DataCatalogMember
-              key={item.uniqueId}
-              member={item}
-              terria={terria}
-              viewState={viewState}
-              userData={userData}
-              overrideOpen={manageIsOpenLocally}
-              onActionButtonClicked={onActionButtonClicked}
-            />
-          ))
-        : null}
-    </CatalogGroup>
+    <div ref={groupRef}>
+      <CatalogGroup
+        text={getNameOrPrettyUrl()}
+        isPrivate={group.isPrivate}
+        title={getPath(group, " → ")}
+        topLevel={isTopLevel}
+        open={isOpen()}
+        loading={group.isLoading || group.isLoadingMembers}
+        emptyMessage={t("dataCatalog.groupEmpty")}
+        onClick={clickGroup}
+        removable={removable}
+        removeUserAddedData={() => removeUserAddedData(terria, group)}
+        selected={isSelected()}
+        // Pass these next three props down to deal with displayGroup functionality
+        displayGroup={group.displayGroup}
+        addRemoveButtonFunction={(event: MouseEvent) => {
+          addRemoveButtonClicked(
+            group,
+            viewState,
+            terria,
+            event.shiftKey || event.ctrlKey
+          );
+        }}
+        allItemsLoaded={allMappableMembersInWorkbench(
+          group.members || [],
+          terria
+        )}
+      >
+        {isOpen()
+          ? group.memberModels.map((item) => (
+              <DataCatalogMember
+                key={item.uniqueId}
+                member={item}
+                terria={terria}
+                viewState={viewState}
+                userData={userData}
+                overrideOpen={manageIsOpenLocally}
+                onActionButtonClicked={onActionButtonClicked}
+              />
+            ))
+          : null}
+      </CatalogGroup>
+    </div>
   );
 });
 
