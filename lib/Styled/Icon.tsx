@@ -150,7 +150,7 @@ import warning from "../../wwwroot/images/icons/warning.svg";
 
 import zoomToLayer from "../../wwwroot/images/icons/zoom-to-layer.svg";
 import compareLayers from "../../wwwroot/images/icons/split-horizontal.svg";
-import exportLayer from "../../wwwroot/images/icons/export-layer.svg";
+import exportLayer from "../../wwwroot/images/icons/export.svg";
 
 // Icon
 export const GLYPHS = {
