@@ -247,6 +247,7 @@ export const ChartStatusText = styled.div<{ width: number; height: number }>`
   justify-content: center;
   width: ${(p) => p.width}px;
   height: ${(p) => p.height}px;
+  color: #1f1459;
 `;
 
 const defaultChartLabel = (opts: {
