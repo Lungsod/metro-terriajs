@@ -3,7 +3,7 @@ import { runInAction } from "mobx";
 import { observer } from "mobx-react";
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { useTranslation } from "react-i18next";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import createGuid from "terriajs-cesium/Source/Core/createGuid";
 import defined from "terriajs-cesium/Source/Core/defined";
 import Rectangle from "terriajs-cesium/Source/Core/Rectangle";
@@ -95,6 +95,7 @@ interface PropsType {
 const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
   const { viewState, item } = props;
   const { t } = useTranslation();
+  const theme = useTheme();
   const [isMenuOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
@@ -490,7 +491,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
         gap={2}
       >
         <WorkbenchButton
-          css="flex-grow:0; background: transparent;"
+          css="flex-grow:0; background: transparent; &:hover svg { fill: #2f265e; }"
           onClick={(e) => {
             e.stopPropagation();
             if (isMenuOpen) {
@@ -518,6 +519,7 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
 
             padding: 0;
             margin: 0;
+            border: 1px solid ${theme.dark};
 
             ul {
               list-style: none;
