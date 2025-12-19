@@ -81,6 +81,14 @@ const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
     const { title, instructions, metrics, errors, measureType } =
       extractMeasureContent(message);
 
+    console.log("EXTRACTED CONTENT", {
+      title,
+      instructions,
+      metrics,
+      errors,
+      measureType
+    });
+
     return (
       <div
         css={`
