@@ -8,9 +8,8 @@ interface DialogMeasureContentProps {
   message: string;
   interactionMode: MapInteractionMode;
   viewState: ViewState;
+  measureType?: "line" | "area" | "unknown";
 }
-
-type MeasureType = "line" | "area" | "unknown";
 
 interface MeasureMetric {
   label: string;
@@ -22,7 +21,6 @@ interface MeasureContent {
   instructions: string[];
   metrics: MeasureMetric[];
   errors: string[];
-  measureType: MeasureType;
 }
 
 /**
@@ -30,6 +28,7 @@ interface MeasureContent {
  * Layout, inline styles, and <br> tags are intentionally ignored.
  */
 function extractMeasureContent(message: string): MeasureContent {
+  console.log("EXTRACTING MEASURE CONTENT FROM MESSAGE", message);
   const text = message.replace(/<[^>]+>/g, "\n");
 
   const lines = text
@@ -42,8 +41,6 @@ function extractMeasureContent(message: string): MeasureContent {
   const instructions: string[] = [];
   const metrics: MeasureMetric[] = [];
   const errors: string[] = [];
-
-  let measureType: MeasureType = "unknown";
 
   for (const line of lines.slice(1)) {
     if (/click/i.test(line)) {
@@ -64,29 +61,22 @@ function extractMeasureContent(message: string): MeasureContent {
       const value = match[2].trim();
 
       metrics.push({ label, value });
-
-      if (/distance/i.test(label)) {
-        measureType = "line";
-      } else if (/area|perimeter/i.test(label)) {
-        measureType = "area";
-      }
     }
   }
 
-  return { title, instructions, metrics, errors, measureType };
+  return { title, instructions, metrics, errors };
 }
 
 const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
-  ({ message, interactionMode, viewState }) => {
-    const { title, instructions, metrics, errors, measureType } =
+  ({ message, interactionMode, viewState, measureType }) => {
+    const { title, instructions, metrics, errors } =
       extractMeasureContent(message);
 
     console.log("EXTRACTED CONTENT", {
       title,
       instructions,
       metrics,
-      errors,
-      measureType
+      errors
     });
 
     return (

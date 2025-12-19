@@ -163,6 +163,9 @@ class MapInteractionWindow extends Component<{
               message={this.currentInteractionMode.message?.()}
               interactionMode={this.currentInteractionMode}
               viewState={this.props.viewState}
+              measureType={
+                this.currentInteractionMode.isMeasurementMode ? "line" : "area"
+              }
             />
           )}
           {/* {isDefined(this.currentInteractionMode) &&
