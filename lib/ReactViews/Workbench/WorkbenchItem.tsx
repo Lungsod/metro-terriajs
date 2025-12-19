@@ -72,12 +72,6 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
     (CatalogMemberMixin.isMixedInto(item) && item.isLoading) ||
     (ReferenceMixin.isMixedInto(item) && item.isLoadingReference);
 
-  useEffect(() => {
-    const close = () => setIsMenuOpen(false);
-    window.addEventListener("click", close);
-    return () => window.removeEventListener("click", close);
-  }, []);
-
   return (
     <StyledLi style={style} className={className}>
       <Box fullWidth justifySpaceBetween paddedRatio={3} styledMinHeight="38px">
@@ -105,7 +99,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                   <Checkbox
                     id="workbenchtoggleVisibility"
                     isChecked={item.show}
-                    isSwitch
+                    isSwitch={false}
                     title={t("workbench.toggleVisibility")}
                     onChange={toggleVisibility}
                     css={`
@@ -140,37 +134,23 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
           </Box>
         </Box>
         {CatalogMemberMixin.isMixedInto(item) ? (
-          <Box centered paddedHorizontally gap={1}>
+          <Box centered paddedHorizontally>
             {item.isPrivate && (
               <BoxSpan paddedHorizontally>
                 <PrivateIndicator inWorkbench />
               </BoxSpan>
             )}
-
-            {/* KEBAB MENU BUTTON */}
-            <WorkbenchButton
-              css="flex-grow:0;"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsMenuOpen(!isMenuOpen);
-              }}
-              title={t("workbench.showMoreActionsTitle")}
-              iconOnly
-              iconElement={() => <Icon glyph={Icon.GLYPHS.menuDotted} />}
-            />
-
-            {/* EXPAND / COLLAPSE */}
             <RawButton onClick={toggleDisplay}>
               <BoxSpan padded>
                 {isOpen ? (
                   <StyledIcon
-                    styledHeight="8px"
+                    styledHeight={"8px"}
                     light
                     glyph={Icon.GLYPHS.opened}
                   />
                 ) : (
                   <StyledIcon
-                    styledHeight="8px"
+                    styledHeight={"8px"}
                     light
                     glyph={Icon.GLYPHS.closed}
                   />
