@@ -34,7 +34,7 @@
       "content": "## Location search\n\nEnter a locality or address to easily locate a point of interest on the map."
     },
     "exploreMapDataButton": {
-      "content": "## Explore Digital Twin data\n\nBrowse the Terria Data Catalogue of available data and add it to the digital twin here. You can add multiple datasets at any one time, and you’ll see them listed down below in the Digital Twin Data panel."
+      "content": "## Explore Digital Twin data\n\nBrowse the Terria Data Catalogue of available data and add it to the digital twin here. You can add multiple layers at any one time, and you’ll see them listed down below in the Digital Twin Data panel."
     },
     "sidePanelUploadButton": {
       "content": "## Upload Data\n\nYou can upload your own data to the map to view it with other data sets. Upload a file or link to an existing online data set or data service. Supported data formats include CSV, GeoJSON, KML, GPX and CZML."
@@ -43,13 +43,13 @@
       "content": "## Map Settings\n\nCustomise map settings such as base maps, 2D/3D Terrain, and map image quality for improved performance."
     },
     "menuBarStoryButton": {
-      "content": "## Stories\n\nStories allow you to add contextual information to a dataset to bring a narrative to life. Create your own data story using the Story Editor, and share it via the ‘Share’ panel once you’re done."
+      "content": "## Stories\n\nStories allow you to add contextual information to a layer to bring a narrative to life. Create your own data story using the Story Editor, and share it via the ‘Share’ panel once you’re done."
     },
     "mapNavigationCompassOuterRing": {
       "content": "## View controls\n\nHere you can change the view of the map. You can change the orientation of your view by using the outer ring, and you can tilt the camera angle using the inner ring. Double click to reset the view."
     },
     "mapNavigationSplitterIcon": {
-      "content": "## Compare\n\nA powerful feature of Terria is the ability to compare datasets using a split screen view. For datasets with a time-series component, such as satellite images, you can compare dates backwards and forwards in time by clicking on the date picker/selector."
+      "content": "## Compare\n\nA powerful feature of Terria is the ability to compare layers using a split screen view. For layers with a time-series component, such as satellite images, you can compare dates backwards and forwards in time by clicking on the date picker/selector."
     }
   },
   "measure": {
@@ -158,7 +158,7 @@
       "dates": "Dates",
       "dateComparisonA": "Date Comparison A",
       "dateComparisonB": "Date Comparison B",
-      "sourceDataset": "Source dataset",
+      "sourceDataset": "Source layer",
       "previewStyle": "Preview style",
       "differenceOutput": "Difference output",
       "generateDiffButtonText": "Generate change detection",
@@ -247,11 +247,11 @@
     "totals": "<div>The catalog contains {{items}} items in {{groups}} groups.</div>",
     "subTotals": "<div> {{name}}: {{items}} items / {{groups}} groups</div>",
     "recount": "Recount",
-    "title": "Count Datasets",
-    "btnCount": "Count datasets",
+    "title": "Count Layers",
+    "btnCount": "Count layers",
     "noMapDataEnabled": "No map data enabled",
-    "mapDataState": "{{count}} dataset enabled on map",
-    "mapDataState_plural": "{{count}} datasets enabled on map"
+    "mapDataState": "{{count}} layer enabled on map",
+    "mapDataState_plural": "{{count}} layers enabled on map"
   },
   "toolsPanel": {
     "btnText": "Tool",
@@ -282,8 +282,8 @@
     "performanceLabel": "Performance",
     "timeline": {
       "title": "Timeline",
-      "alwaysShowLabel": "Press to start only showing the timeline when there are time-varying datasets on the workbench",
-      "hideLabel": "Press to start always showing the timeline, even when no time-varying datasets are on the workbench",
+      "alwaysShowLabel": "Press to start only showing the timeline when there are time-varying layers on the workbench",
+      "hideLabel": "Press to start always showing the timeline, even when no time-varying layers are on the workbench",
       "alwaysShow": "Always show"
     },
     "terrain": {
@@ -326,7 +326,7 @@
       "confirmText": "Yes",
       "denyText": "Maybe later"
     },
-    "showWorkbench": "Explore Datasets [{{count}}]",
+    "showWorkbench": "Explore Layers [{{count}}]",
     "hideWorkbench": "Hide Workbench"
   },
   "featureInfo": {
@@ -416,7 +416,7 @@
     "dismissText": "Got it, thanks!",
     "mobileViewStory": "View Stories {{storiesLength}}",
     "storyEditor": "Story Editor",
-    "storiesTooLong": "This story exceeds the maximum size allowed. Try reducing the number of visible datasets, or capture fewer scenes.",
+    "storiesTooLong": "This story exceeds the maximum size allowed. Try reducing the number of visible layers, or capture fewer scenes.",
     "hideStoryPanel": "hide story builder",
     "loadSceneErrorTitle": "Error loading Story Scene",
     "loadSceneErrorMessage": "An error occurred while loading data for story scene: `{{title}}`."
@@ -482,8 +482,8 @@
   },
   "preview": {
     "doesNotContainGeospatialData": "This file does not contain geospatial data.",
-    "selectToPreviewDataset": "Select a dataset to see a preview",
-    "selectMultipleDatasets": "<0>Press <strong>Shift</strong> and click</0><1 /><2>to add multiple datasets</2>",
+    "selectToPreviewDataset": "Select a layer to see a preview",
+    "selectMultipleDatasets": "<0>Press <strong>Shift</strong> and click</0><1 /><2>to add multiple layers</2>",
     "selectToPreviewSeparator": "OR",
     "goToTheMap": "Go to the map",
     "loading": "PREVIEW LOADING...",
@@ -498,7 +498,7 @@
     "addToMap": "Add to the map",
     "disclaimer": "Disclaimer",
     "dataDescription": "Data Description",
-    "datasetDescription": "Dataset Description",
+    "datasetDescription": "Layer Description",
     "serviceDescription": "Service Description",
     "resourceDescription": "Resource Description",
     "licence": "Licence",
@@ -510,7 +510,7 @@
     "modified": "Modified",
     "updateFrequency": "Update Frequency",
     "dataCustodian": "Data Custodian",
-    "mayBeExperiencingIssues": "This dataset may currently be experiencing issues"
+    "mayBeExperiencingIssues": "This layer may currently be experiencing issues"
   },
   "description": {
     "name": "Description",
@@ -580,7 +580,7 @@
     "useTimeline": "Use timeline",
     "availableTimeChart": "Show available times on chart",
     "timeline": {
-      "textCell": "Name of the dataset whose time range is shown",
+      "textCell": "Name of the layer whose time range is shown",
       "gotoStart": "Go to beginning",
       "togglePlay": "Play",
       "playSlower": "Play Slower",
@@ -634,13 +634,13 @@
   },
   "emptyWorkbenchInfo": [
     {
-      "heading": "Add a dataset here",
-      "body": "When you add a dataset, its legend and settings appear here."
+      "heading": "Add a layer here",
+      "body": "When you add a layer, its legend and settings appear here."
     },
     {
       "heading": "Get started",
       "list": [
-        "Click Explore data to view available datasets",
+        "Click Explore data to view available layers",
         "Upload your own via Upload data",
         "Find your added data in this panel"
       ]
@@ -664,7 +664,7 @@
     "groupEmpty": "This group is empty"
   },
   "catalogItem": {
-    "privateIndicatorTitle": "Private Dataset",
+    "privateIndicatorTitle": "Private Layer",
     "loading": "Loading...",
     "remove": "Remove",
     "add": "Add",
@@ -797,7 +797,7 @@
       "defaultCombineTitle": "Multiple errors occurred",
       "defaultCombineMessage": "Details of the errors are below",
       "networkRequestTitle": "A network request error occurred",
-      "networkRequestMessage": "Data may not be available or display correctly due to data custodian's service outage. Please try reloading the map, accessing the data at a later stage, or selecting a different dataset. <feedbacklink feedback-message='If the problem persists, please submit feedback here.' email-message='If the problem persists, please report to {{email}}'/>",
+      "networkRequestMessage": "Data may not be available or display correctly due to data custodian's service outage. Please try reloading the map, accessing the data at a later stage, or selecting a different layer. <feedbacklink feedback-message='If the problem persists, please submit feedback here.' email-message='If the problem persists, please report to {{email}}'/>",
       "networkRequestMessageDetailed": "This may indicate one of the following:\n\n* The server hostname could not be resolved\n* The server did not respond to the request - or is temporarily unavailable\n* The server denied [Cross-Origin Resource Sharing (CORS)](https://docs.terria.io/guide/connecting-to-data/cross-origin-resource-sharing/) access to this URL\n* There is a problem with your internet connection\n\nIf you entered the link manually, please verify that the link is correct."
     },
     "unverifiedExternalLink": {
@@ -813,11 +813,11 @@
     },
     "cesium": {
       "stoppedRenderingTitle": "3D map failed to render",
-      "stoppedRenderingMessage": "This may have been caused by a dataset just added to the workbench - please try removing it. If this does not resolve your problem you may need to reload {{appName}}.",
+      "stoppedRenderingMessage": "This may have been caused by a layer just added to the workbench - please try removing it. If this does not resolve your problem you may need to reload {{appName}}.",
       "devError": "cesium is required.",
       "failedToObtain": "Failed to obtain image tile X: {{x}} Y: {{y}} Level: {{level}}.",
-      "notWebMercatorTilingScheme": "This dataset cannot be displayed on the 2D map because it does not support the Web Mercator (EPSG:3857) projection.",
-      "unusalTilingScheme": "This dataset cannot be displayed on the 2D map because it uses an unusual tiling scheme that is not supported.",
+      "notWebMercatorTilingScheme": "This layer cannot be displayed on the 2D map because it does not support the Web Mercator (EPSG:3857) projection.",
+      "unusalTilingScheme": "This layer cannot be displayed on the 2D map because it uses an unusual tiling scheme that is not supported.",
       "terrainServerErrorTitle": "Terrain Server Not Responding",
       "terrainServerErrorMessage": " The terrain server is not responding at the moment.  You can still use all the features of {{appName}} but there will be no terrain detail in 3D mode.  We're sorry for the inconvenience.  Please try again later and the terrain server should be responding as expected.  If the issue persists, please contact us via email at {{supportEmail}}."
     },
@@ -984,10 +984,10 @@
       "name": "CKAN Resource",
       "dataSourceErrorMessage": "This data source does not have any details available.",
       "serviceErrorMessage": "This service does not have any details available.",
-      "datasetDescription": "Dataset Description",
+      "datasetDescription": "Layer Description",
       "dataDescription": "Data Description",
       "resourceDescription": "Resource Description",
-      "datasetCustodian": "Dataset Custodian",
+      "datasetCustodian": "Layer Custodian",
       "licence": "Licence",
       "author": "Author",
       "contact_point": "Contact",
@@ -1001,8 +1001,8 @@
       "invalidCkanTitle": "Invalid CKAN resource JSON",
       "invalidCkanMessage": "The resource returned from the CKAN server does not appear to have a package_id.",
       "notCompatibleTitle": "No compatible resources found",
-      "notCompatibleMessageI": "The CKAN dataset does not have a resource with the ID {{resourceId}} or it does not have a supported format.",
-      "notCompatibleMessageII": "The CKAN dataset does not have any resources with a supported format."
+      "notCompatibleMessageI": "The CKAN layer does not have a resource with the ID {{resourceId}} or it does not have a supported format.",
+      "notCompatibleMessageII": "The CKAN layer does not have any resources with a supported format."
     },
     "arcgisPortal": {
       "nameGroup": "ArcGIS Portal Group",
@@ -1012,7 +1012,7 @@
       "name": "ArcGIS Portal Item",
       "dataSourceErrorMessage": "This data source does not have any details available.",
       "serviceErrorMessage": "This service does not have any details available.",
-      "datasetDescription": "Dataset Description",
+      "datasetDescription": "Layer Description",
       "licence": "Licence",
       "openInPortal": "Open in ArcGIS Portal",
       "idsNotSpecifiedTitle": "resourceId or datasetId must be specified",
@@ -1103,7 +1103,7 @@
       "unableToLoadItemTitle": "No GeoJSON available",
       "unableToLoadItemMessage": "The GeoJSON catalog item cannot be loaded because it was not configured with a `url`, `geoJsonData`, or `geoJsonString` property.",
       "unsupportedBrowserTitle": "Unsupported web browser",
-      "unsupportedBrowserMessage": "Sorry, your web browser does not support the File API, which {{appName}} requires in order to load this dataset.  Please upgrade your web browser.  For the best experience, we recommend the latest versions of $t(browsers.chrome) or $t(browsers.firefox) or $t(browsers.edge) or $t(browsers.safari)."
+      "unsupportedBrowserMessage": "Sorry, your web browser does not support the File API, which {{appName}} requires in order to load this layer.  Please upgrade your web browser.  For the best experience, we recommend the latest versions of $t(browsers.chrome) or $t(browsers.firefox) or $t(browsers.edge) or $t(browsers.safari)."
     },
     "shapefile": {
       "name": "Shapefile"
@@ -1156,7 +1156,7 @@
       "tileErrorMessageII": "Got a 200 (OK) response from URL:\n{{url}}\nbut it could not be loaded as an image.",
       "unknownTileErrorTitle": "Unknown Tile Error",
       "unknownTileErrorMessage": "While accessing URL:\n{{url}}\nThis probably indicates one of the following:\n* The server hostname could not be resolved,\n* The server did not respond to the request, or\n* The server denied Cross-Origin Resource Sharing (CORS) access to this URL (See https://docs.terria.io/guide/connecting-to-data/cross-origin-resource-sharing/).",
-      "unableToDisplayTitle": "Unable to display dataset",
+      "unableToDisplayTitle": "Unable to display layer",
       "unableToDisplayMessage": "{{name}} cannot be shown in 2D because it does not support the standard Web Mercator (EPSG:3857) projection. Please switch to 3D if it is supported on your system, update the dataset to support the projection, or use a different dataset.",
       "unableToShowLocTitle": "Unable to show at this location",
       "unableToShowLocMessage": "{{name}} cannot be shown at this location because the available capture times are unknown. The {{featureTimesProperty}} property was not found."
@@ -1450,9 +1450,9 @@
       "serviceContact": "Service Contact",
       "getCapabilitiesUrl": "GetCapabilities URL",
       "noLayerFoundTitle": "No layer found",
-      "noLayerFoundMessage": "The WFS dataset '{{name}}' has no layers matching '{{typeNames}}'. Either the catalog file has been set up incorrectly, or the WFS server has changed.",
+      "noLayerFoundMessage": "The WFS layer '{{name}}' has no layers matching '{{typeNames}}'. Either the catalog file has been set up incorrectly, or the WFS server has changed.",
       "missingDataTitle": "Missing data",
-      "missingDataMessage": "The WFS dataset '{{name}}' did not return any data. Either the catalog file has been set up incorrectly, or the server address has changed.",
+      "missingDataMessage": "The WFS layer '{{name}}' did not return any data. Either the catalog file has been set up incorrectly, or the server address has changed.",
       "missingUrlTitle": "Unable to load GetCapabilities",
       "missingUrlMessage": "Could not load the Web Feature Service (WFS) GetCapabilities document because the catalog item does not have a `url`.",
       "reachedMaxFeatureLimit": "Warning: This layer has reached the WFS feature limit ({{maxFeatures}})"
@@ -1479,11 +1479,11 @@
       "getCapabilitiesUrl": "GetCapabilities URL",
       "defaultStyleLabel": "Default style",
       "noLayerFoundTitle": "No layer found",
-      "noLayerFoundMessage": "The WMS dataset '{{name}}' has no layers matching '{{layers}}'. Either the catalog file has been set up incorrectly, or the WMS server has changed.",
+      "noLayerFoundMessage": "The WMS layer '{{name}}' has no layers matching '{{layers}}'. Either the catalog file has been set up incorrectly, or the WMS server has changed.",
       "badlyFormatedTitle": "Badly formatted periodicity",
-      "badlyFormatedMessage": "The '{{name}}' dataset has a badly formed periodicity, '{{isoSegments}}'. Click the dataset's Info button for more information about the dataset and the data custodian.",
+      "badlyFormatedMessage": "The '{{name}}' layer has a badly formed periodicity, '{{isoSegments}}'. Click the layer's Info button for more information about the layer and the data custodian.",
       "missingDataTitle": "Missing data",
-      "missingDataMessage": "The WMS dataset '{{name}}' did not return any data.{{line}}{{line}}Either the catalog file has been set up incorrectly, or the server address has changed.",
+      "missingDataMessage": "The WMS layer '{{name}}' did not return any data.{{line}}{{line}}Either the catalog file has been set up incorrectly, or the server address has changed.",
       "missingUrlTitle": "Unable to load GetCapabilities",
       "missingUrlMessage": "Could not load the Web Map Service (WMS) GetCapabilities document because the catalog item does not have a `url`."
     },
@@ -1580,11 +1580,11 @@
       }
     },
     "commonModelErrors": {
-      "3dTypeIn2dMode": "**Note:** This dataset can not be displayed in the 2D viewer. Switch to one of the 3D map modes."
+      "3dTypeIn2dMode": "**Note:** This layer can not be displayed in the 2D viewer. Switch to one of the 3D map modes."
     },
     "scaleDatasetNotVisible": {
-      "scaleZoomIn": "Dataset is not available at this scale, zoom in to see it",
-      "scaleZoomOut": "Dataset is not available at this scale, zoom out to see it"
+      "scaleZoomIn": "Layer is not available at this scale, zoom in to see it",
+      "scaleZoomOut": "Layer is not available at this scale, zoom out to see it"
     },
     "tableStyling": {
       "hideAdvancedOptions": "Hide advanced options",
@@ -1596,10 +1596,10 @@
         "name": "Data",
         "selectableDimensions": {
           "dataset": {
-            "name": "Dataset"
+            "name": "Layer"
           },
           "tableStyle": {
-            "name": "Style"
+            "name": "Value/Field/Component"
           },
           "tableStyleType": {
             "name": "Symbology",
@@ -2186,9 +2186,9 @@
       "sendAllToBack": "Send all to back",
       "hideAll": "Hide all"
     },
-    "info": "Compare spatial datasets from your workbench side-by-side on the map.",
+    "info": "Compare spatial layers from your workbench side-by-side on the map.",
     "dataset": {
-      "label": "Dataset",
+      "label": "Layer",
       "selectOne": "Select one"
     },
     "dimensionSelector": {
