@@ -11,11 +11,31 @@ interface DialogMeasureContentProps {
   viewState: ViewState;
 }
 
+/**
+ * Strip a single outer container tag (div/span) if present.
+ * This prevents layout being dictated by HTML content.
+ */
+function stripOuterContainer(html: string) {
+  if (!html) return html;
+
+  return html
+    .replace(/^<\s*(div|span)[^>]*>/i, "")
+    .replace(/<\/\s*(div|span)\s*>$/i, "");
+}
+
 const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
   ({ message, interactionMode, viewState }) => {
+    const cleanMessage = stripOuterContainer(message);
+
     return (
-      <>
-        {parseCustomHtmlToReact(message)}
+      <div
+        css={`
+          display: flex;
+          flex-direction: column;
+          align-items: stretch;
+        `}
+      >
+        {parseCustomHtmlToReact(cleanMessage)}
 
         {interactionMode.isMeasurementMode && (
           <div
@@ -65,7 +85,7 @@ const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
             </RawButton>
           </div>
         )}
-      </>
+      </div>
     );
   }
 );
