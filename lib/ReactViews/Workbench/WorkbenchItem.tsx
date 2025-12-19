@@ -177,7 +177,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
         </Box>
       )}
 
-      {isMenuOpen && <WorkbenchItemMenu item={item} viewState={viewState} />}
+      {/* {isMenuOpen && <WorkbenchItemMenu item={item} viewState={viewState} />} */}
     </StyledLi>
   );
 });
