@@ -41,8 +41,6 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
   const { t } = useTranslation();
   const theme = useTheme();
 
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
   const toggleDisplay = action(() => {
     if (!CatalogMemberMixin.isMixedInto(item)) return;
     item.setTrait(
@@ -67,12 +65,6 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
   const isLoading =
     (CatalogMemberMixin.isMixedInto(item) && item.isLoading) ||
     (ReferenceMixin.isMixedInto(item) && item.isLoadingReference);
-
-  useEffect(() => {
-    const close = () => setIsMenuOpen(false);
-    window.addEventListener("click", close);
-    return () => window.removeEventListener("click", close);
-  }, []);
 
   return (
     <StyledLi style={style} className={className}>
@@ -101,7 +93,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                   <Checkbox
                     id="workbenchtoggleVisibility"
                     isChecked={item.show}
-                    isSwitch
+                    isSwitch={false}
                     title={t("workbench.toggleVisibility")}
                     onChange={toggleVisibility}
                     css={`
@@ -136,37 +128,23 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
           </Box>
         </Box>
         {CatalogMemberMixin.isMixedInto(item) ? (
-          <Box centered paddedHorizontally gap={1}>
+          <Box centered paddedHorizontally>
             {item.isPrivate && (
               <BoxSpan paddedHorizontally>
                 <PrivateIndicator inWorkbench />
               </BoxSpan>
             )}
-
-            {/* KEBAB MENU BUTTON */}
-            <WorkbenchButton
-              css="flex-grow:0;"
-              onClick={(e) => {
-                e.stopPropagation();
-                setIsMenuOpen(!isMenuOpen);
-              }}
-              title={t("workbench.showMoreActionsTitle")}
-              iconOnly
-              iconElement={() => <Icon glyph={Icon.GLYPHS.menuDotted} />}
-            />
-
-            {/* EXPAND / COLLAPSE */}
             <RawButton onClick={toggleDisplay}>
               <BoxSpan padded>
                 {isOpen ? (
                   <StyledIcon
-                    styledHeight="8px"
+                    styledHeight={"8px"}
                     light
                     glyph={Icon.GLYPHS.opened}
                   />
                 ) : (
                   <StyledIcon
-                    styledHeight="8px"
+                    styledHeight={"8px"}
                     light
                     glyph={Icon.GLYPHS.closed}
                   />
@@ -226,10 +204,10 @@ const DraggableBox = styled(Box)`
 `;
 
 const StyledLi = styled(Li)`
-  background: ${(p) => p.theme.darkWithOverlay};
-  color: ${(p) => p.theme.textLight};
+  background: ${WORKBENCH_ITEM_BG};
+  color: ${(p) => p.theme.textDark};
   border-radius: 8px;
-  border: 1px solid ${(p) => p.theme.grey};
+  border: 1px solid ${(p) => p.theme.dark};
   width: 100%;
 
   margin-bottom: 20px;
