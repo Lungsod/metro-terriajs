@@ -10,11 +10,26 @@ interface DialogMeasureContentProps {
   viewState: ViewState;
 }
 
+type MeasureType = "line" | "area" | "unknown";
+
+interface MeasureMetric {
+  label: string;
+  value: string;
+}
+
+interface MeasureContent {
+  title: string;
+  instructions: string[];
+  metrics: MeasureMetric[];
+  errors: string[];
+  measureType: MeasureType;
+}
+
 /**
  * Extract semantic content from legacy measurement HTML messages.
- * We intentionally ignore layout tags, inline styles, and <br>.
+ * Layout, inline styles, and <br> tags are intentionally ignored.
  */
-function extractMeasureContent(message: string) {
+function extractMeasureContent(message: string): MeasureContent {
   const text = message.replace(/<[^>]+>/g, "\n");
 
   const lines = text
@@ -25,8 +40,10 @@ function extractMeasureContent(message: string) {
   const title = lines[0] ?? "";
 
   const instructions: string[] = [];
-  const metrics: { label: string; value: string }[] = [];
+  const metrics: MeasureMetric[] = [];
   const errors: string[] = [];
+
+  let measureType: MeasureType = "unknown";
 
   for (const line of lines.slice(1)) {
     if (/click/i.test(line)) {
@@ -41,21 +58,27 @@ function extractMeasureContent(message: string) {
 
     if (/\d/.test(line)) {
       const match = line.match(/^(.*?)(\d.*)$/);
-      if (match) {
-        metrics.push({
-          label: match[1].trim(),
-          value: match[2].trim()
-        });
+      if (!match) continue;
+
+      const label = match[1].trim();
+      const value = match[2].trim();
+
+      metrics.push({ label, value });
+
+      if (/distance/i.test(label)) {
+        measureType = "line";
+      } else if (/area|perimeter/i.test(label)) {
+        measureType = "area";
       }
     }
   }
 
-  return { title, instructions, metrics, errors };
+  return { title, instructions, metrics, errors, measureType };
 }
 
 const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
   ({ message, interactionMode, viewState }) => {
-    const { title, instructions, metrics, errors } =
+    const { title, instructions, metrics, errors, measureType } =
       extractMeasureContent(message);
 
     return (
@@ -80,7 +103,7 @@ const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
         {/* Instructions */}
         {instructions.map((text, i) => (
           <div
-            key={i}
+            key={`instruction-${i}`}
             css={`
               font-size: 14px;
               color: #434343;
@@ -93,7 +116,7 @@ const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
         {/* Errors */}
         {errors.map((err, i) => (
           <div
-            key={i}
+            key={`error-${i}`}
             css={`
               font-size: 14px;
               color: #c62828;
@@ -105,20 +128,20 @@ const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
         ))}
 
         {/* Metrics */}
-        {metrics.map((m, i) => (
+        {metrics.map((metric, i) => (
           <div
-            key={i}
+            key={`metric-${i}`}
             css={`
               font-size: 15px;
               font-weight: 500;
             `}
           >
-            {m.label} <strong>{m.value}</strong>
+            {metric.label} <strong>{metric.value}</strong>
           </div>
         ))}
 
         {/* Actions */}
-        {interactionMode.isMeasurementMode && (
+        {measureType !== "unknown" && (
           <div
             css={`
               display: flex;
