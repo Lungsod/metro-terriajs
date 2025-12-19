@@ -125,6 +125,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                     <TextSpan
                       large
                       bold
+                      textDark
                       maxLines={!isOpen ? 2 : false}
                       title={getName(item)}
                     >
@@ -136,7 +137,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                 <TextSpan
                   large
                   bold
-                  textLight
+                  textDark
                   maxLines={!isOpen ? 2 : false}
                   title={getName(item)}
                   css={`
