@@ -25,7 +25,7 @@ const BadgeBar: FC<IProps> = (props: IProps) => {
       `}
     >
       <Box>
-        <TextSpan textLight uppercase overflowHide overflowEllipsis>
+        <TextSpan textLight uppercase overflowHide overflowEllipsis bold large>
           {props.label} {props.badge !== undefined ? `(${props.badge})` : null}
         </TextSpan>
       </Box>
