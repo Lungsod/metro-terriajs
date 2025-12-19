@@ -28,7 +28,6 @@ interface MeasureContent {
  * Layout, inline styles, and <br> tags are intentionally ignored.
  */
 function extractMeasureContent(message: string): MeasureContent {
-  console.log(message);
   const text = message.replace(/<[^>]+>/g, "\n");
 
   const lines = text
@@ -141,7 +140,7 @@ const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
               font-weight: 500;
             `}
           >
-            {metric.label} <strong>{metric.value}</strong>
+            {metric.label}: <strong>{metric.value}</strong>
           </div>
         ))}
 
@@ -153,7 +152,7 @@ const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
               justify-content: center;
               flex-wrap: wrap;
               gap: 6px;
-              margin-top: 6px;
+              margin-top: 12px;
             `}
           >
             <RawButton
