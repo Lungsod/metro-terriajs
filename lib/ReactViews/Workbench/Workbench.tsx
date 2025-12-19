@@ -94,6 +94,13 @@ class Workbench extends Component<IProps> {
                 justify-content: space-evenly;
                 background-color: #2f265e;
                 border-radius: 4px;
+                &:hover {
+                  background-color: #d7d5ff;
+                  color: #2f265e;
+                }
+                &:hover svg {
+                  fill: #2f265e;
+                }
               `}
             >
               <StyledIcon
@@ -117,6 +124,13 @@ class Workbench extends Component<IProps> {
                 justify-content: space-evenly;
                 background-color: #2f265e;
                 border-radius: 4px;
+                &:hover {
+                  background-color: #d7d5ff;
+                  color: #2f265e;
+                }
+                &:hover svg {
+                  fill: #2f265e;
+                }
               `}
             >
               <StyledIcon
@@ -141,6 +155,13 @@ class Workbench extends Component<IProps> {
                 justify-content: space-evenly;
                 background-color: #2f265e;
                 border-radius: 4px;
+                &:hover {
+                  background-color: #d7d5ff;
+                  color: #2f265e;
+                }
+                &:hover svg {
+                  fill: #2f265e;
+                }
               `}
             >
               <StyledIcon
@@ -164,6 +185,13 @@ class Workbench extends Component<IProps> {
                 justify-content: space-evenly;
                 background-color: #2f265e;
                 border-radius: 4px;
+                &:hover {
+                  background-color: #d7d5ff;
+                  color: #2f265e;
+                }
+                &:hover svg {
+                  fill: #2f265e;
+                }
               `}
             >
               <StyledIcon
@@ -190,6 +218,13 @@ class Workbench extends Component<IProps> {
               svg {
                 vertical-align: middle;
                 padding-right: 4px;
+              }
+              &:hover {
+                background-color: #d7d5ff;
+                color: #2f265e;
+              }
+              &:hover svg {
+                fill: #2f265e;
               }
             `}
           >
