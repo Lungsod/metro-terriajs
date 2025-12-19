@@ -28,7 +28,7 @@ interface MeasureContent {
  * Layout, inline styles, and <br> tags are intentionally ignored.
  */
 function extractMeasureContent(message: string): MeasureContent {
-  console.log("EXTRACTING MEASURE CONTENT FROM MESSAGE", message);
+  console.log(message);
   const text = message.replace(/<[^>]+>/g, "\n");
 
   const lines = text
@@ -42,42 +42,49 @@ function extractMeasureContent(message: string): MeasureContent {
   const metrics: MeasureMetric[] = [];
   const errors: string[] = [];
 
+  let pendingLabel: string | null = null;
+
   for (const line of lines.slice(1)) {
     if (/click/i.test(line)) {
       instructions.push(line);
+      pendingLabel = null;
       continue;
     }
 
     if (/error/i.test(line)) {
       errors.push(line);
+      pendingLabel = null;
       continue;
     }
 
-    if (/\d/.test(line)) {
-      const match = line.match(/^(.*?)(\d.*)$/);
-      if (!match) continue;
+    // If line has NO digits → assume label
+    if (!/\d/.test(line)) {
+      pendingLabel = line;
+      continue;
+    }
 
-      const label = match[1].trim();
-      const value = match[2].trim();
-
-      metrics.push({ label, value });
+    // Line HAS digits → value
+    if (pendingLabel) {
+      metrics.push({
+        label: pendingLabel,
+        value: line
+      });
+      pendingLabel = null;
     }
   }
 
-  return { title, instructions, metrics, errors };
+  return {
+    title,
+    instructions,
+    metrics,
+    errors
+  };
 }
 
 const DialogMeasureContent: React.FC<DialogMeasureContentProps> = observer(
   ({ message, interactionMode, viewState, measureType }) => {
     const { title, instructions, metrics, errors } =
       extractMeasureContent(message);
-
-    console.log("EXTRACTED CONTENT", {
-      title,
-      instructions,
-      metrics,
-      errors
-    });
 
     return (
       <div
