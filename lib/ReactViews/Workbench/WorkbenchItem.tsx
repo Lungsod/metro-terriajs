@@ -25,6 +25,8 @@ import { useState, useCallback, useEffect } from "react";
 import WorkbenchButton from "./WorkbenchButton";
 import WorkbenchItemMenu from "./Controls/WorkbenchItemMenu";
 
+const WORKBENCH_ITEM_BG = "#F0EEFF";
+
 interface IProps {
   item: BaseModel;
   onMouseDown(): void;
@@ -211,7 +213,7 @@ const StyledLi = styled(Li)`
   background: ${(p) => p.theme.darkWithOverlay};
   color: ${(p) => p.theme.textLight};
   border-radius: 8px;
-  border: 1px solid ${(p) => p.theme.grey};
+  border: 1px solid ${(p) => p.theme.dark};
   width: 100%;
 
   margin-bottom: 20px;
