@@ -19,6 +19,11 @@ const StyledUl = styled(Ul)`
       margin-top: 0;
     }
   }
+  &::-webkit-scrollbar {
+    width: 8px;
+    background: white;
+    margin-right: 5px;
+  }
 `;
 
 interface IProps {
