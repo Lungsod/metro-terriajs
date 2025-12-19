@@ -25,6 +25,7 @@ import { useState, useCallback, useEffect } from "react";
 import WorkbenchButton from "./WorkbenchButton";
 import WorkbenchItemMenu from "./Controls/WorkbenchItemMenu";
 
+// Temporary Fix
 const WORKBENCH_ITEM_BG = "#F0EEFF";
 
 interface IProps {
@@ -210,8 +211,8 @@ const DraggableBox = styled(Box)`
 `;
 
 const StyledLi = styled(Li)`
-  background: ${(p) => p.theme.darkWithOverlay};
-  color: ${(p) => p.theme.textLight};
+  background: ${WORKBENCH_ITEM_BG};
+  color: ${(p) => p.theme.textDark};
   border-radius: 8px;
   border: 1px solid ${(p) => p.theme.dark};
   width: 100%;
