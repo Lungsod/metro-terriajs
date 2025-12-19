@@ -66,6 +66,7 @@ const StyledLabel = styled(Text).attrs({ as: "label" })<{ htmlFor: string }>`
   white-space: nowrap;
   flex-basis: 50%;
   color: #1f1459;
+  font-weight: 700;
 `;
 
 export default withTranslation()(withTheme(OpacitySection));
