@@ -54,7 +54,9 @@ const WorkbenchSplitScreen: FC<IWorkbenchSplitScreenProps> = observer(
               line-height: 34px;
             `}
           >
-            <Box>{t("workbench.splitScreenMode")}</Box>
+            <Box css={{ color: "#1f1459" }}>
+              {t("workbench.splitScreenMode")}
+            </Box>
             <RawButton
               onClick={() => {
                 runInAction(() => (terria.showSplitter = !terria.showSplitter));
