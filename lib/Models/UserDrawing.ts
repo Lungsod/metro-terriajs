@@ -48,6 +48,7 @@ interface Options {
   onDrawingComplete?: (params: OnDrawingCompleteParams) => void;
   onCleanUp?: () => void;
   invisible?: boolean;
+  isMeasurementMode?: boolean;
 }
 
 export default class UserDrawing extends MappableMixin(
@@ -64,6 +65,7 @@ export default class UserDrawing extends MappableMixin(
   ) => void;
   private readonly onCleanUp?: () => void;
   private readonly invisible?: boolean;
+  private readonly isMeasurementMode?: boolean;
 
   // helper for dragging points around
   private dragHelper?: DragPoints;
@@ -150,6 +152,7 @@ export default class UserDrawing extends MappableMixin(
     this.drawRectangle = options.drawRectangle ?? false;
 
     this.invisible = options.invisible;
+    this.isMeasurementMode = options.isMeasurementMode;
   }
 
   protected forceLoadMapItems(): Promise<void> {
@@ -397,7 +400,8 @@ export default class UserDrawing extends MappableMixin(
           }, false) as any;
         }
       },
-      invisible: this.invisible
+      invisible: this.invisible,
+      isMeasurementMode: this.isMeasurementMode
     });
     runInAction(() => {
       this.terria.mapInteractionModeStack.push(pickPointMode);

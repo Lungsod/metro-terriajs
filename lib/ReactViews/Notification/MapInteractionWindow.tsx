@@ -157,6 +157,16 @@ class MapInteractionWindow extends Component<{
           {isDefined(this.currentInteractionMode) &&
             this.currentInteractionMode.messageAsNode()}
         </div>
+        {this.currentInteractionMode?.isMeasurementMode && (
+          <div style={{ marginTop: "10px", display: "flex", gap: "10px" }}>
+            <button
+              onClick={() => this.props.viewState.setPrintWindow(window.open())}
+            >
+              Print
+            </button>
+            <button onClick={this.currentInteractionMode.onCancel}>Done</button>
+          </div>
+        )}
         {typeof this.currentInteractionMode?.customUi === "function" &&
           this.currentInteractionMode.customUi()}
       </MapInteractionWindowWrapper>
