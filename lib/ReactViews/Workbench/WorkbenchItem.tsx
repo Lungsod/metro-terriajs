@@ -42,6 +42,8 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
   const { item, style, className, viewState, onMouseDown, onTouchStart } =
     props;
 
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
   const { t } = useTranslation();
   const theme = useTheme();
 
@@ -131,6 +133,17 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
             </DraggableBox>
           </Box>
         </Box>
+
+        <RawButton onClick={() => setIsMenuOpen(!isMenuOpen)}>
+          <BoxSpan padded>
+            <StyledIcon
+              styledHeight={"8px"}
+              fillColor={theme.dark}
+              glyph={Icon.GLYPHS.menuDotted}
+            />
+          </BoxSpan>
+        </RawButton>
+
         {CatalogMemberMixin.isMixedInto(item) ? (
           <Box centered paddedHorizontally>
             {item.isPrivate && (
@@ -177,7 +190,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
         </Box>
       )}
 
-      {/* {isMenuOpen && <WorkbenchItemMenu item={item} viewState={viewState} />} */}
+      {isMenuOpen && <WorkbenchItemMenu item={item} viewState={viewState} />}
     </StyledLi>
   );
 });
