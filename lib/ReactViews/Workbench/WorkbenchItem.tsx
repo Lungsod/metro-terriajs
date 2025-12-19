@@ -23,6 +23,7 @@ import PrivateIndicator from "../PrivateIndicator/PrivateIndicator";
 import WorkbenchItemControls from "./Controls/WorkbenchItemControls";
 import { useState, useCallback, useEffect } from "react";
 import WorkbenchButton from "./WorkbenchButton";
+import WorkbenchItemMenu from "./Controls/WorkbenchItemMenu";
 
 interface IProps {
   item: BaseModel;
@@ -195,26 +196,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
         </Box>
       )}
 
-      {isMenuOpen && (
-        <Box
-          css={`
-            position: absolute;
-            z-index: 100;
-            right: 12px;
-            top: 42px;
-
-            padding: 0;
-            margin: 0;
-
-            ul {
-              list-style: none;
-            }
-          `}
-        >
-          {/* TEMP PLACEHOLDER */}
-          <Box padded>MENU GOES HERE</Box>
-        </Box>
-      )}
+      {isMenuOpen && <WorkbenchItemMenu item={item} viewState={viewState} />}
     </StyledLi>
   );
 });
