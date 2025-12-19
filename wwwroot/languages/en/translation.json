@@ -543,7 +543,7 @@
     "displayPercent": "Display as a percentage of regional total",
     "opacity": "Opacity: {{opacity}} %",
     "zoomToTitle": "Zoom to extent",
-    "zoomTo": "Ideal Zoom",
+    "zoomTo": "Zoom to Layer",
     "openFeatureTitle": "Zoom to data",
     "openFeature": "Zoom to",
     "previewItemTitle": "About this data",

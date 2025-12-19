@@ -351,6 +351,23 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
           </ViewingControlMenuButton>
         </li>
 
+        {viewingControls.map((viewingControl) => (
+          <li key={viewingControl.id}>
+            <ViewingControlMenuButton
+              onClick={() => {
+                handleOnClick(viewingControl);
+                setIsOpen(false);
+              }}
+              title={viewingControl.iconTitle}
+            >
+              <BoxViewingControl>
+                <StyledIcon {...viewingControl.icon} />
+                <span>{viewingControl.name}</span>
+              </BoxViewingControl>
+            </ViewingControlMenuButton>
+          </li>
+        ))}
+
         <li key="about-data">
           <ViewingControlMenuButton
             onClick={() => {
@@ -368,22 +385,6 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
           </ViewingControlMenuButton>
         </li>
 
-        {viewingControls.map((viewingControl) => (
-          <li key={viewingControl.id}>
-            <ViewingControlMenuButton
-              onClick={() => {
-                handleOnClick(viewingControl);
-                setIsOpen(false);
-              }}
-              title={viewingControl.iconTitle}
-            >
-              <BoxViewingControl>
-                <StyledIcon {...viewingControl.icon} />
-                <span>{viewingControl.name}</span>
-              </BoxViewingControl>
-            </ViewingControlMenuButton>
-          </li>
-        ))}
         {canSplit ? (
           <li key={"workbench.splitItem"}>
             <ViewingControlMenuButton
