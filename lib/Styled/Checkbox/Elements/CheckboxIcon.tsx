@@ -28,8 +28,8 @@ const StyledCheckboxIcon = styled(StyledIcon).attrs({
 `;
 
 const CheckboxIcon: FC<CheckboxIconProps> = (props: CheckboxIconProps) => {
-  const iconOn = props.isSwitch ? GLYPHS.switchOn : GLYPHS.checkboxOn;
-  const iconOff = props.isSwitch ? GLYPHS.switchOff : GLYPHS.checkboxOff;
+  const iconOn = props.isSwitch ? GLYPHS.switchOn : GLYPHS.eye;
+  const iconOff = props.isSwitch ? GLYPHS.switchOff : GLYPHS.disable;
   if (props.isDisabled) {
     return (
       <StyledCheckboxIcon
@@ -38,7 +38,7 @@ const CheckboxIcon: FC<CheckboxIconProps> = (props: CheckboxIconProps) => {
         isSwitch={props.isSwitch}
         css={`
           cursor: not-allowed;
-          opacity: 0.3;
+          opacity: 0.8;
         `}
       />
     );
