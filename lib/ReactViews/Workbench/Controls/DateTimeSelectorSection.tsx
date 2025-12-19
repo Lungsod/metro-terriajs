@@ -193,7 +193,7 @@ class DateTimeSelectorSection extends Component<IProps, IState> {
                 padding: 0 10px;
               `}
             >
-              <TextSpan textLight id="current-date">
+              <TextSpan textDark id="current-date">
                 {isDefined(discreteTime)
                   ? discreteTime
                   : t("dateTime.outOfRange")}
@@ -277,10 +277,10 @@ const TimelineButton = styled(RawButton)<{ active: boolean }>`
     props.active &&
     `
       background-color: ${props.theme.colorPrimary};
-      color: ${props.theme.textLight};
+      color: ${props.theme.textDark};
       &:hover,
       &:focus {
-        color: ${props.theme.textLight};
+        color: ${props.theme.textDark};
       }
   `}
 `;
