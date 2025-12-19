@@ -510,7 +510,6 @@ const WorkbenchItemMenu: React.FC<PropsType> = observer((props) => {
 
             padding: 0;
             margin: 0;
-            border: 1px solid ${theme.dark};
 
             ul {
               list-style: none;
