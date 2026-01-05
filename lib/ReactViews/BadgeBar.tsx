@@ -20,14 +20,12 @@ const BadgeBar: FC<IProps> = (props: IProps) => {
       styledMinHeight="70px"
       verticalCenter
       css={`
-        border-top: 1px solid ${theme.darkLighter};
-        border-bottom: 1px solid ${theme.darkLighter};
         justify-content: space-evenly;
         align-items: center;
       `}
     >
       <Box>
-        <TextSpan textLight uppercase overflowHide overflowEllipsis>
+        <TextSpan textLight uppercase overflowHide overflowEllipsis bold large>
           {props.label} {props.badge !== undefined ? `(${props.badge})` : null}
         </TextSpan>
       </Box>

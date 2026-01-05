@@ -189,6 +189,16 @@ const SidePanel = observer<React.FC<SidePanelProps>>(
               title={addData}
               btnText={addData}
               styledWidth={"152px"}
+              css={`
+                background-color: #2f265e;
+                &:hover {
+                  background-color: #d7d5ff;
+                  color: #2f265e;
+                }
+                &:hover svg {
+                  fill: #2f265e;
+                }
+              `}
             >
               <StyledIcon glyph={Icon.GLYPHS.add} light styledWidth={"20px"} />
             </SidePanelButton>
@@ -198,6 +208,16 @@ const SidePanel = observer<React.FC<SidePanelProps>>(
               title={t("addData.load")}
               btnText={uploadText}
               styledWidth={"152px"}
+              css={`
+                background-color: #2f265e;
+                &:hover {
+                  background-color: #d7d5ff;
+                  color: #2f265e;
+                }
+                &:hover svg {
+                  fill: #2f265e;
+                }
+              `}
             >
               <StyledIcon
                 glyph={Icon.GLYPHS.uploadThin}

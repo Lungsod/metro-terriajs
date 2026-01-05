@@ -148,6 +148,10 @@ import switchOff from "../../wwwroot/images/icons/switch-off.svg";
 import dragDrop from "../../wwwroot/images/icons/drag-drop.svg";
 import warning from "../../wwwroot/images/icons/warning.svg";
 
+import zoomToLayer from "../../wwwroot/images/icons/zoom-to-layer.svg";
+import compareLayers from "../../wwwroot/images/icons/split-horizontal.svg";
+import exportLayer from "../../wwwroot/images/icons/export.svg";
+
 // Icon
 export const GLYPHS = {
   calendar,
@@ -293,7 +297,10 @@ export const GLYPHS = {
   switchOn,
   switchOff,
   dragDrop,
-  warning
+  warning,
+  zoomToLayer,
+  compareLayers,
+  exportLayer
 };
 
 export interface IconGlyph {

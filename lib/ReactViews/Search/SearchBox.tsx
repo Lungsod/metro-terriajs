@@ -25,6 +25,7 @@ const SearchInput = styled.input<{ rounded?: boolean }>`
   padding: 0.5rem 40px;
   vertical-align: middle;
   -webkit-appearance: none;
+  text-align: center;
 `;
 
 export const DEBOUNCE_INTERVAL = 1000;
@@ -132,6 +133,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
         htmlFor="search"
         css={`
           position: absolute;
+          left: 20%;
         `}
       >
         <Box paddedRatio={2}>
@@ -143,6 +145,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({
             opacity={0.5}
             css={`
               position: absolute;
+              left: 0;
             `}
           />
         </Box>

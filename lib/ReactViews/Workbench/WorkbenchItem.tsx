@@ -21,6 +21,12 @@ import { TextSpan } from "../../Styled/Text";
 import Loader from "../Loader";
 import PrivateIndicator from "../PrivateIndicator/PrivateIndicator";
 import WorkbenchItemControls from "./Controls/WorkbenchItemControls";
+import { useState, useCallback, useEffect } from "react";
+import WorkbenchButton from "./WorkbenchButton";
+import WorkbenchItemMenu from "./Controls/WorkbenchItemMenu";
+
+// Temporary Fix
+const WORKBENCH_ITEM_BG = "#F0EEFF";
 
 interface IProps {
   item: BaseModel;
@@ -35,6 +41,8 @@ interface IProps {
 const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
   const { item, style, className, viewState, onMouseDown, onTouchStart } =
     props;
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const { t } = useTranslation();
   const theme = useTheme();
@@ -65,8 +73,22 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
     (ReferenceMixin.isMixedInto(item) && item.isLoadingReference);
 
   return (
-    <StyledLi style={style} className={className}>
-      <Box fullWidth justifySpaceBetween paddedRatio={3} styledMinHeight="38px">
+    <StyledLi
+      style={style}
+      css={`
+        border: 2px solid ${theme.dark};
+      `}
+      className={className}
+    >
+      <Box
+        fullWidth
+        justifySpaceBetween
+        paddedRatio={3}
+        styledMinHeight="38px"
+        css={`
+          border-bottom: 1px solid ${theme.dark};
+        `}
+      >
         <Box fullWidth>
           <Box left fullWidth centered>
             <DraggableBox
@@ -91,7 +113,7 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                   <Checkbox
                     id="workbenchtoggleVisibility"
                     isChecked={item.show}
-                    isSwitch
+                    isSwitch={false}
                     title={t("workbench.toggleVisibility")}
                     onChange={toggleVisibility}
                     css={`
@@ -101,9 +123,15 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                     textProps={{ medium: true, fullWidth: true }}
                   >
                     <TextSpan
-                      medium
+                      large
+                      bold
+                      textDark
                       maxLines={!isOpen ? 2 : false}
                       title={getName(item)}
+                      css={`
+                        overflow-wrap: anywhere;
+                        color: #1f1459;
+                      `}
                     >
                       {getName(item)}
                     </TextSpan>
@@ -111,12 +139,14 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                 </Box>
               ) : (
                 <TextSpan
-                  medium
-                  textLight
+                  large
+                  bold
+                  textDark
                   maxLines={!isOpen ? 2 : false}
                   title={getName(item)}
                   css={`
                     overflow-wrap: anywhere;
+                    color: #1f1459;
                   `}
                 >
                   {getName(item)}
@@ -125,6 +155,9 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
             </DraggableBox>
           </Box>
         </Box>
+
+        <WorkbenchItemMenu item={item} viewState={viewState} />
+
         {CatalogMemberMixin.isMixedInto(item) ? (
           <Box centered paddedHorizontally>
             {item.isPrivate && (
@@ -137,13 +170,13 @@ const WorkbenchItemRaw: React.FC<IProps> = observer((props) => {
                 {isOpen ? (
                   <StyledIcon
                     styledHeight={"8px"}
-                    light
+                    fillColor={theme.dark}
                     glyph={Icon.GLYPHS.opened}
                   />
                 ) : (
                   <StyledIcon
                     styledHeight={"8px"}
-                    light
+                    fillColor={theme.dark}
                     glyph={Icon.GLYPHS.closed}
                   />
                 )}
@@ -181,10 +214,10 @@ const DraggableBox = styled(Box)`
 `;
 
 const StyledLi = styled(Li)`
-  background: ${(p) => p.theme.darkWithOverlay};
-  color: ${(p) => p.theme.textLight};
+  background: ${(p) => p.theme.textLight};
+  color: ${(p) => p.theme.textDark};
   border-radius: 8px;
-  border: 1px solid ${(p) => p.theme.grey};
+  border: 1px solid ${(p) => p.theme.dark};
   width: 100%;
 
   margin-bottom: 20px;

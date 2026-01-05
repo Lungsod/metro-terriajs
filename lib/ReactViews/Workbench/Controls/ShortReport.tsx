@@ -62,7 +62,7 @@ export default class ShortReport extends Component<{
       <Box fullWidth displayInlineBlock>
         {/* Show shortReport */}
         {isDefined(item.shortReport) && (
-          <Text textGreyLighter medium>
+          <Text textDarker medium>
             {parseCustomMarkdownToReact(item.shortReport, {
               catalogItem: item
             })}
@@ -87,7 +87,7 @@ export default class ShortReport extends Component<{
                   })}
                 </Collapsible>
               ) : (
-                <Text textGreyLighter medium>
+                <Text textDarker medium>
                   {parseCustomMarkdownToReact(r.name!, {
                     catalogItem: item
                   })}
