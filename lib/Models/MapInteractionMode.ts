@@ -16,6 +16,7 @@ interface Options {
   uiMode?: UIMode; // diff tool hack for now
   onEnable?: (viewState: ViewState) => void;
   invisible?: boolean;
+  isMeasurementMode?: boolean;
 }
 
 /**
@@ -28,6 +29,7 @@ export default class MapInteractionMode {
   readonly uiMode?: UIMode;
 
   readonly invisible: boolean;
+  readonly isMeasurementMode: boolean;
 
   @observable
   customUi: (() => any) | undefined;
@@ -88,9 +90,7 @@ export default class MapInteractionMode {
      */
     this.uiMode = options.uiMode ?? undefined;
 
-    /**
-     * Determines whether a rectangle will be requested from the user rather than a set of pickedFeatures.
-     */
+    this.isMeasurementMode = options.isMeasurementMode ?? false;
     // this.drawRectangle = options.drawRectangle ?? false;
     this.onEnable = options.onEnable;
 

@@ -45,7 +45,8 @@ export class MeasureTool extends MapNavigationItemController {
       onPointClicked: this.onPointClicked.bind(this),
       onPointMoved: this.onPointMoved.bind(this),
       onCleanUp: this.onCleanUp.bind(this),
-      onMakeDialogMessage: this.onMakeDialogMessage.bind(this)
+      onMakeDialogMessage: this.onMakeDialogMessage.bind(this),
+      isMeasurementMode: true
     });
     this.onClose = props.onClose;
     this.onHandleClick = props.onHandleClick;
