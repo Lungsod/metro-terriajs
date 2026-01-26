@@ -136,9 +136,9 @@ const WorkbenchItemControls: FC<WorkbenchItemControlsProps> = observer(
           )}
         {controls?.shortReport ? <ShortReport item={item} /> : null}
         {controls?.legend ? <Legend item={item} /> : null}
-        {controls?.selectableDimensions ? (
+        {/* {controls?.selectableDimensions ? (
           <DimensionSelectorSection item={item} placement={"belowLegend"} />
-        ) : null}
+        ) : null} */}
         {
           <GeneratedControlSection
             item={item}
