@@ -135,7 +135,7 @@ const Title = styled(Text).attrs({
 const Icon = styled(StyledIcon).attrs({
   styledWidth: "18px",
   styledHeight: "18px",
-  light: true
+  light: false
 })``;
 
 const Content = styled.div`
