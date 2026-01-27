@@ -63,7 +63,7 @@ export const SelectableDimensionColor: FC<{
             activeStyles
             fullHeight
           >
-            <TextSpan textLight small css={{ margin: 0 }}>
+            <TextSpan small light css={{ margin: 0 }}>
               {t("selectableDimensions.colorAdd")}
             </TextSpan>
           </RawButton>
@@ -82,7 +82,7 @@ export const SelectableDimensionColor: FC<{
             activeStyles
             fullHeight
           >
-            <TextSpan textLight small css={{ margin: 0 }}>
+            <TextSpan small light css={{ margin: 0 }}>
               {t("selectableDimensions.colorRemove")}
             </TextSpan>
           </RawButton>
