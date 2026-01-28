@@ -124,6 +124,7 @@ export const StyledTextArea = styled.textarea<TextAreaProps>`
 
 export const StyledInput = styled.input<InputProps>`
   ${commonStyles}
+  border: 1px solid #3C3F78;
 `;
 
 const Input: FC<InputProps> = (props: InputProps) => {
