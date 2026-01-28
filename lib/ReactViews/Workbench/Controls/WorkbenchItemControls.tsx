@@ -59,7 +59,7 @@ export const defaultControls: Complete<WorkbenchControls> = {
   filter: true,
   dateTime: true,
   timeFilter: true,
-  selectableDimensions: true,
+  selectableDimensions: false,
   colorScaleRange: true,
   shortReport: true,
   legend: true

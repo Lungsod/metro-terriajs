@@ -105,7 +105,7 @@ const PanelMenuButton = styled.button<{ isOpen: boolean }>`
   border-radius: 2px;
 
   svg {
-    fill: ${(props) => props.theme.greyLighter};
+    fill: #2f265e;
     width: 16px;
     height: 16px;
   }

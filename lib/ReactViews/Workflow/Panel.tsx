@@ -6,6 +6,8 @@ import { IconProps, StyledIcon } from "../../Styled/Icon";
 import Text from "../../Styled/Text";
 import { CollapseIcon } from "../Custom/Collapsible/Collapsible";
 
+const PANEL_BG = "#F0EEFF";
+
 export type PanelProps = {
   title?: string;
   icon?: IconProps["glyph"];
@@ -91,7 +93,8 @@ export const PanelButton: FC<{ onClick: () => void; title: string }> = ({
 );
 
 const Wrapper = styled.div`
-  background-color: ${(p) => p.theme.darkWithOverlay};
+  background-color: ${PANEL_BG};
+  box-sizing: border-box;
   margin: 15px 15px 0px 15px;
   padding: 15px;
   border-radius: 5px;
@@ -123,7 +126,7 @@ const CollapsibleTitleBar = styled(RawButton)<
 `;
 
 const Title = styled(Text).attrs({
-  textLight: true,
+  textLight: false,
   medium: true
 })`
   flex-grow: 1;
@@ -132,7 +135,7 @@ const Title = styled(Text).attrs({
 const Icon = styled(StyledIcon).attrs({
   styledWidth: "18px",
   styledHeight: "18px",
-  light: true
+  light: false
 })``;
 
 const Content = styled.div`

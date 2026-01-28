@@ -168,6 +168,7 @@ const CloseTextButton = styled(Button).attrs({
   primary: true
 })`
   font-size: 14px;
+  border: 1px solid #fff;
 `;
 
 const Error = styled.div`
