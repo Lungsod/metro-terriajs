@@ -251,6 +251,7 @@ const SettingPanel: FC = observer(() => {
               <>
                 <Spacing bottom={2} />
                 <Checkbox
+                  isSwitch={true}
                   textProps={{ small: true }}
                   id="depthTestAgainstTerrain"
                   title={depthTestAgainstTerrainLabel}
@@ -312,6 +313,7 @@ const SettingPanel: FC = observer(() => {
               <Text as="label">{t("settingPanel.timeline.title")}</Text>
             </Box>
             <Checkbox
+              isSwitch={true}
               textProps={{ small: true }}
               id="alwaysShowTimeline"
               isChecked={timelineStack.alwaysShowingTimeline}
@@ -334,6 +336,7 @@ const SettingPanel: FC = observer(() => {
                 <Text as="label">{t("settingPanel.imageOptimisation")}</Text>
               </Box>
               <Checkbox
+                isSwitch={true}
                 textProps={{ small: true }}
                 id="mapUseNativeResolution"
                 isChecked={useNativeResolution}
