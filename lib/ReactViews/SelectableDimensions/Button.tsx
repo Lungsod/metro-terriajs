@@ -31,7 +31,7 @@ export const SelectableDimensionButton: FC<{
       style={{ backgroundColor: "transparent" }}
     >
       <div style={{ display: "flex" }}>
-        <Text textLight>
+        <Text color="rgb(77, 87, 102)">
           {parseCustomMarkdownToReactWithOptions(dim.value ?? "", {
             inline: true
           })}
