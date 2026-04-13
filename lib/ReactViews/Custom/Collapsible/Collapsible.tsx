@@ -92,10 +92,10 @@ const Collapsible: FC<CollapsibleProps> = observer((props) => {
         {!props.btnRight && <CollapseIcon {...props} isOpen={isOpen} />}
         {!props.btnRight && <SpacingSpan right={1} />}
         <TextSpan
-          textLight={props.light ?? true}
           bold
           medium
           {...props.titleTextProps}
+          color="rgb(77, 87, 102)"
         >
           {parseCustomMarkdownToReactWithOptions(props.title, {
             inline: true
